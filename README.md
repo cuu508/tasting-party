@@ -1,6 +1,6 @@
 # Tasting Party
 
-A script which visits sites listed in sites.txt, and records what
+`scan.py` visits sites listed in sites.txt, and records the
 cookies they set on first visit. In the end, it generates a report
 in `site/index.html` with the results.
 
