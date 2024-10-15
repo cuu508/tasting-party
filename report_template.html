@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ now.date() }}</title>
+</head>
+<body>
+    <style type="text/css">
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.5em;
+        }
+
+        td.x {
+            background: #FEE;
+            text-align: center;
+        }
+
+        td.a {
+            font-family: monospace;
+        }
+
+    </style>
+    <table>
+        <tr>
+            <th>Vietne</th>
+            <th>Uzstāda _ga</th>
+            <th>Uzstāda _fbp</th>
+            <th>Visi cepumi</th>
+        </tr>
+        {% for site, clist in cookies.items() %}
+        <tr>
+            <td>{{ site }}</td>
+            {% if "_ga" in clist %}
+            <td class="x">Jā</td>
+            {% else %}
+            <td></td>
+            {% endif %}
+
+            {% if "_fbp" in clist %}
+            <td class="x">Jā</td>
+            {% else %}
+            <td></td>
+            {% endif %}
+            <td class="a">
+                <details>
+                    <summary>{{ clist|length }}</summary>
+                    <ul>
+                        {% for c in clist %}<li>{{ c }}</li>{% endfor %}
+                    </ul>
+                </details>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
