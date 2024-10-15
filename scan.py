@@ -16,14 +16,10 @@ data = Path("scans") / ts
 data.mkdir(parents=True, exist_ok=True)
 
 driver = None
-cookies = {}
-sites = sorted(open("sites.txt", "r").readlines())
-for site in sites:
-    site = site.strip()
-    if not site:
-        continue
-
-    spath = data / site
+sites = {}
+for domain in sorted(open("sites.txt", "r").readlines()):
+    domain = domain.strip()
+    spath = data / domain
     if not spath.exists():
         if driver is None:
             chrome_options = webdriver.ChromeOptions()
@@ -32,21 +28,25 @@ for site in sites:
             driver.execute_script(
                 "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
             )
-        print(f"Loading { site }")
-        driver.get(f"https://{ site }")
+        print(f"Loading { domain }")
+        driver.get(f"https://{ domain }")
         time.sleep(3)
         html = driver.find_element(By.TAG_NAME, "html")
         html.send_keys(Keys.END)
         time.sleep(3)
         spath.open("w").write(json.dumps(driver.get_cookies()))
 
-    cookie_doc = json.loads(spath.open().read())
-    cookies[site] = [c["name"] for c in cookie_doc]
-    cookies[site].sort()
+    sites[domain] = {}
+    cookies = json.loads(spath.open().read())
+    cookies.sort(key=lambda cookie: cookie["name"])
+    for cookie in cookies:
+        if "expiry" in cookie:
+            cookie["expiry_dt"] = datetime.datetime.fromtimestamp(cookie["expiry"])
+        sites[domain][cookie["name"]] = cookie
 
 # Render result
 tmpl = Template(open("report_template.html").read())
-html = tmpl.render(now=now, cookies=cookies)
+html = tmpl.render(now=now, sites=sites)
 site = data = Path("site")
 site.mkdir(exist_ok=True)
 with open("site/index.html", "w") as f:

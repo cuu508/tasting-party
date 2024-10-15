@@ -31,12 +31,11 @@
         sīkdatņu uzstādīšanai.
     </p>
     <p>
-        Ja redzi savu vietni tabulā ar sarkanu "jā" tai līdzās, lūdzu izlabo,
-        lai vietne izsekošanas, reklāmu, statistikas un citas ne-obligātās sīkdatnes
-        uzstādītu tikai pēc lietotāja atļaujas saņemšanas. Datu valsts inspekcijas
+        Ja redzi savu vietni tabulā ar "jā" tai līdzās, lūdzu izlabo,
+        lai izsekošanas, reklāmu, statistikas un citas ne-obligātās sīkdatnes
+        tiktu uzstādītas tikai pēc lietotāja atļaujas saņemšanas. Datu valsts inspekcijas
         satatavotajās <a href="https://www.dvi.gov.lv/lv/media/1517/download">vadlīnijās</a>
-        var iepazīties ar prasībām sīkdatņu izmantošanai tīmekļa vietnēs, tur ir
-        atrodami arī piemēri.
+        var iepazīties ar prasībām sīkdatņu izmantošanai tīmekļa vietnēs.
     </p>
     <p>
         Sagatavots <strong>{{ now.date() }}</strong>, izmantojot
@@ -47,28 +46,41 @@
             <th>Vietne</th>
             <th>Uzstāda _ga</th>
             <th>Uzstāda _fbp</th>
-            <th>Citas sīkdatnes</th>
+            <th>Visas sīkdatnes</th>
         </tr>
-        {% for site, clist in cookies.items() %}
+        {% for domain, cookies in sites.items() %}
         <tr>
-            <td>{{ site }}</td>
-            {% if "_ga" in clist %}
+            <td>{{ domain }}</td>
+            {% if "_ga" in cookies %}
             <td class="x">Jā</td>
             {% else %}
             <td></td>
             {% endif %}
 
-            {% if "_fbp" in clist %}
+            {% if "_fbp" in cookies %}
             <td class="x">Jā</td>
             {% else %}
             <td></td>
             {% endif %}
             <td class="a">
                 <details>
-                    <summary>{{ clist|length }}</summary>
-                    <ul>
-                        {% for c in clist %}<li>{{ c }}</li>{% endfor %}
-                    </ul>
+                    <summary>{{ cookies|length }}</summary>
+                    <table>
+                        <tr>
+                            <th>Vārds</th>
+                            <th>Vērtība</th>
+                            <th>Domēns</th>
+                            <th>Termiņš</th>
+                        </tr>
+                        {% for c in cookies.values() %}
+                        <tr>
+                            <td>{{ c["name"] }}</td>
+                            <td>{{ c["value"]|truncate(50) }}</td>
+                            <td>{{ c["domain"] }}</td>
+                            <td>{{ c["expiry_dt"] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
                 </details>
             </td>
         </tr>
