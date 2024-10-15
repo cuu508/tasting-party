@@ -47,7 +47,7 @@ for domain in sorted(open("sites.txt", "r").readlines()):
 # Render result
 tmpl = Template(open("report_template.html").read())
 html = tmpl.render(now=now, sites=sites)
-site = data = Path("site")
+site = Path("site")
 site.mkdir(exist_ok=True)
 with open("site/index.html", "w") as f:
     f.write(html)
