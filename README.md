@@ -6,7 +6,13 @@ in `site/index.html` with the results.
 
 Example report: https://cookies.b-cdn.net/
 
-To run, set up python virtualenv, then install dependencies:
+To use, first install Chromium (the below assumes Debian):
+
+```
+apt install chromium chromium-chromedriver
+```
+
+Then set up python virtualenv, then install dependencies:
 
 ```
 pip install -r requirements.txt
@@ -18,7 +24,7 @@ And then run `scan.py`:
 python scan.py
 ```
 
-The script uses Chrome to visit the sites (so you need Chrome installed),
+The script uses Chromium to visit the sites (so you need Chromium installed),
 and talks to Chrome using the selenium library. For each visited site it:
 
 * loads the page,
