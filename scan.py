@@ -11,7 +11,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium_stealth import stealth
 
-TARGETS = ["_ga", "_fbp"]
+TARGETS = ["_ga", "_fbp", "_clck", "_pcid"]
 
 
 class CookieLoader(object):

@@ -13,6 +13,7 @@
         th, td {
             border: 1px solid #ddd;
             padding: 0.5em;
+            min-width: 60px;
         }
 
         td.x {
@@ -45,7 +46,7 @@
         <tr>
             <th>Vietne</th>
             {% for target in targets %}
-            <th>Uzstāda {{ target }}</th>
+            <th>{{ target }}</th>
             {% endfor %}
             <th>Visas sīkdatnes</th>
         </tr>
@@ -60,6 +61,7 @@
                 {% endif %}
             {% endfor %}
             <td class="a">
+                {% if cookies|length %}
                 <details>
                     <summary>{{ cookies|length }}</summary>
                     <table>
@@ -79,6 +81,7 @@
                         {% endfor %}
                     </table>
                 </details>
+                {% else %}–{% endif %}
             </td>
         </tr>
         {% endfor %}
@@ -97,5 +100,34 @@
         </li>
     {% endfor %}
     </ul>
+
+    <h2>Sīkdatņu nosaukumu atšifrējumi</h2>
+    <table>
+        <tr>
+            <th>Sīkdatne</th>
+            <th>Kategorija</th>
+            <th>Pakalpojums</th>
+        </tr>
+        <tr>
+            <td>_ga</td>
+            <td>Statistika</td>
+            <td>Google Analytics</td>
+        </tr>
+        <tr>
+            <td>_fbp</td>
+            <td>Mārketings</td>
+            <td>Facebook Pixel</td>
+        </tr>
+        <tr>
+            <td>_clck</td>
+            <td>Statistika</td>
+            <td>Microsoft Clarity</td>
+        </tr>
+        <tr>
+            <td>_pcid</td>
+            <td>Statistika</td>
+            <td>Piano Analytics</td>
+        </tr>
+    </table>
 </body>
 </html>
