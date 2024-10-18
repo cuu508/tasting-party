@@ -4,7 +4,7 @@
 cookies they set on first visit. In the end, it generates a report
 in `site/index.html` with the results.
 
-Example report: https://cookies.b-cdn.net/
+Example report: https://sīkdatnes.lv/
 
 To use, first install Chromium (the below assumes Debian):
 
