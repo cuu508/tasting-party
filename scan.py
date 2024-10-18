@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-import datetime
 import json
 import time
+from datetime import UTC, datetime
 from pathlib import Path
 
 from jinja2 import Template
@@ -50,7 +50,7 @@ class CookieLoader(object):
 
 class Catalog(object):
     def __init__(self):
-        now = datetime.datetime.now(datetime.UTC)
+        now = datetime.now(UTC)
         ts = now.strftime("%Y%m%d")
         self.today_path = Path("scans") / ts
         self.today_path.mkdir(parents=True, exist_ok=True)
@@ -71,10 +71,11 @@ class Catalog(object):
             new_state = set(c["name"] for c in doc if c["name"] in TARGETS)
 
             if state is not None:
+                d = datetime.strptime(subdir.name, "%Y%m%d").date()
                 for removed_cookie in state - new_state:
-                    result.append((subdir.name, domain, removed_cookie, False))
+                    result.append((d, domain, removed_cookie, False))
                 for added_cookie in new_state - state:
-                    result.append((subdir.name, domain, added_cookie, True))
+                    result.append((d, domain, added_cookie, True))
 
             state = new_state
 
@@ -103,7 +104,7 @@ for domain in catalog.domains():
     cookielist.sort(key=lambda item: item["name"])
     for item in cookielist:
         if "expiry" in item:
-            item["expiry_dt"] = datetime.datetime.fromtimestamp(item["expiry"])
+            item["expiry_dt"] = datetime.fromtimestamp(item["expiry"])
         sites[domain][item["name"]] = item
 
 events = []
@@ -113,10 +114,10 @@ for domain in catalog.domains():
 events.sort(reverse=True)
 
 # Render result
-now = datetime.datetime.now(datetime.UTC)
+now = datetime.now(UTC)
 ts = now.strftime("%Y%m%d")
 tmpl = Template(open("report_template.html").read())
-html = tmpl.render(now=now, sites=sites, events=events)
+html = tmpl.render(now=now, targets=TARGETS, sites=sites, events=events)
 site = Path("site")
 site.mkdir(exist_ok=True)
 with open("site/index.html", "w") as f:

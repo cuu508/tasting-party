@@ -44,24 +44,21 @@
     <table>
         <tr>
             <th>Vietne</th>
-            <th>Uzstāda _ga</th>
-            <th>Uzstāda _fbp</th>
+            {% for target in targets %}
+            <th>Uzstāda {{ target }}</th>
+            {% endfor %}
             <th>Visas sīkdatnes</th>
         </tr>
         {% for domain, cookies in sites.items() %}
         <tr>
             <td><a href="https://{{ domain }}">{{ domain }}</a></td>
-            {% if "_ga" in cookies %}
-            <td class="x">Jā</td>
-            {% else %}
-            <td></td>
-            {% endif %}
-
-            {% if "_fbp" in cookies %}
-            <td class="x">Jā</td>
-            {% else %}
-            <td></td>
-            {% endif %}
+            {% for target in targets%}
+                {% if target in cookies %}
+                    <td class="x">Jā</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+            {% endfor %}
             <td class="a">
                 <details>
                     <summary>{{ cookies|length }}</summary>
