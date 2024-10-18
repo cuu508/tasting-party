@@ -50,7 +50,7 @@
         </tr>
         {% for domain, cookies in sites.items() %}
         <tr>
-            <td>{{ domain }}</td>
+            <td><a href="https://{{ domain }}">{{ domain }}</a></td>
             {% if "_ga" in cookies %}
             <td class="x">Jā</td>
             {% else %}
@@ -86,5 +86,19 @@
         </tr>
         {% endfor %}
     </table>
+
+    <h2>Izmaiņu vēsture</h2>
+    <ul>
+    {% for ts, domain, cookie, added in events %}
+        <li>
+            {{ ts }}
+            {% if added %}
+                😭 Vietne <a href="https://{{ domain }}">{{ domain }}</a> sāk uzstādīt sīkdatni <code>{{ cookie }}</code>.
+            {% else %}
+                🥳 Vietne <a href="https://{{ domain }}">{{ domain }}</a> pārstāj uzstādīt sīkdatni <code>{{ cookie }}</code>.
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
 </body>
 </html>

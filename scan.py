@@ -11,6 +11,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium_stealth import stealth
 
+TARGETS = ["_ga", "_fbp"]
+
 
 class CookieLoader(object):
     def __init__(self):
@@ -58,6 +60,26 @@ class Catalog(object):
         if path.exists():
             return json.loads(path.open().read())
 
+    def get_cookie_changes(self, domain):
+        result, state = [], None
+        for subdir in sorted(Path("scans").iterdir()):
+            path = subdir / domain
+            if not path.exists():
+                continue
+
+            doc = json.loads(path.open().read())
+            new_state = set(c["name"] for c in doc if c["name"] in TARGETS)
+
+            if state is not None:
+                for removed_cookie in state - new_state:
+                    result.append((subdir.name, domain, removed_cookie, False))
+                for added_cookie in new_state - state:
+                    result.append((subdir.name, domain, added_cookie, True))
+
+            state = new_state
+
+        return result
+
     def set_cookies(self, domain, cookielist):
         path = self.today_path / domain
         path.open("w").write(json.dumps(cookielist))
@@ -84,11 +106,17 @@ for domain in catalog.domains():
             item["expiry_dt"] = datetime.datetime.fromtimestamp(item["expiry"])
         sites[domain][item["name"]] = item
 
+events = []
+for domain in catalog.domains():
+    events.extend(catalog.get_cookie_changes(domain))
+
+events.sort(reverse=True)
+
 # Render result
 now = datetime.datetime.now(datetime.UTC)
 ts = now.strftime("%Y%m%d")
 tmpl = Template(open("report_template.html").read())
-html = tmpl.render(now=now, sites=sites)
+html = tmpl.render(now=now, sites=sites, events=events)
 site = Path("site")
 site.mkdir(exist_ok=True)
 with open("site/index.html", "w") as f:
