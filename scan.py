@@ -5,12 +5,12 @@ import time
 from datetime import UTC, datetime
 from pathlib import Path
 
-from jinja2 import Template
+from jinja2 import Environment, FileSystemLoader
 from selenium import webdriver
 from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from selenium_stealth import stealth
 
-TARGETS = ["_ga", "_fbp", "_clck", "_pcid"]
+TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*"]
 
 
 class CookieLoader(object):
@@ -77,14 +77,14 @@ class Catalog(object):
         self.today_path.mkdir(parents=True, exist_ok=True)
 
     def get_cookies(self, domain):
-        path = self.today_path / domain
+        path = self.today_path / domain.replace("/", "-")
         if path.exists():
             return json.loads(path.open().read())
 
     def get_cookie_changes(self, domain):
         result, state = [], None
         for subdir in sorted(Path("scans").iterdir()):
-            path = subdir / domain
+            path = subdir / domain.replace("/", "-")
             if not path.exists():
                 continue
 
@@ -103,7 +103,7 @@ class Catalog(object):
         return result
 
     def set_cookies(self, domain, cookielist):
-        path = self.today_path / domain
+        path = self.today_path / domain.replace("/", "-")
         path.open("w").write(json.dumps(cookielist))
 
     def domains(self):
@@ -134,10 +134,22 @@ for domain in catalog.domains():
 
 events.sort(reverse=True)
 
+
 # Render result
 now = datetime.now(UTC)
 ts = now.strftime("%Y%m%d")
-tmpl = Template(open("report_template.html").read())
+
+
+def matching(target, cookies):
+    if target.endswith("*"):
+        target = target[:-1]
+        return any(name.startswith(target) for name in cookies)
+    return target in cookies
+
+
+env = Environment(loader=FileSystemLoader("."))
+env.tests["matching"] = matching
+tmpl = env.get_template("report_template.html")
 html = tmpl.render(now=now, targets=TARGETS, sites=sites, events=events)
 site = Path("site")
 site.mkdir(exist_ok=True)

@@ -54,7 +54,7 @@
         <tr>
             <td><a href="https://{{ domain }}">{{ domain }}</a></td>
             {% for target in targets%}
-                {% if target in cookies %}
+                {% if target is matching cookies %}
                     <td class="x">Jā</td>
                 {% else %}
                     <td></td>
@@ -127,6 +127,11 @@
             <td>_pcid</td>
             <td>Statistika</td>
             <td>Piano Analytics</td>
+        </tr>
+        <tr>
+            <td>_hj*</td>
+            <td>Statistika</td>
+            <td>HotJar</td>
         </tr>
     </table>
 </body>
