@@ -7,8 +7,7 @@ from pathlib import Path
 
 from jinja2 import Template
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from selenium_stealth import stealth
 
 TARGETS = ["_ga", "_fbp", "_clck", "_pcid"]
@@ -22,6 +21,7 @@ class CookieLoader(object):
         if not self._driver:
             opts = webdriver.ChromeOptions()
             opts.add_argument("--headless=new")
+            opts.add_argument("--window-size=2560,1440")
             opts.add_experimental_option("excludeSwitches", ["enable-automation"])
             opts.add_experimental_option("useAutomationExtension", False)
             service = webdriver.ChromeService(executable_path="/usr/bin/chromedriver")
@@ -42,9 +42,30 @@ class CookieLoader(object):
         d = self.driver()
         d.get(url)
         time.sleep(3)
-        html = d.find_element(By.TAG_NAME, "html")
-        html.send_keys(Keys.END)
+
+        # Now prod the page to cause more cookies to load:
+        # 1. Move mouse to all corners of the sceeen
+        width = d.execute_script("return document.documentElement.clientWidth")
+        height = d.execute_script("return document.documentElement.clientHeight")
+        for x, y in [
+            (10, 10),
+            (10, height - 10),
+            (width - 10, 10),
+            (width - 10, height - 10),
+        ]:
+            action = ActionBuilder(d)
+            action.pointer_action.move_to_location(x, y)
+            action.perform()
+
+        # 2. Scroll to the bottom of the page
+        scrollh = d.execute_script("return document.body.scrollHeight")
+        webdriver.ActionChains(d).scroll_by_amount(0, scrollh).perform()
         time.sleep(3)
+
+        # 3. Scroll to the top of the page
+        webdriver.ActionChains(d).scroll_by_amount(0, -scrollh).perform()
+        time.sleep(3)
+
         return d.get_cookies()
 
 
