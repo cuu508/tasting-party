@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import time
 from datetime import UTC, datetime
 from pathlib import Path
@@ -140,6 +141,9 @@ now = datetime.now(UTC)
 ts = now.strftime("%Y%m%d")
 
 
+env = Environment(loader=FileSystemLoader("."))
+
+
 def matching(target, cookies):
     if target.endswith("*"):
         target = target[:-1]
@@ -147,8 +151,16 @@ def matching(target, cookies):
     return target in cookies
 
 
-env = Environment(loader=FileSystemLoader("."))
 env.tests["matching"] = matching
+
+
+def mask_ip(value):
+    return re.sub(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}", "***", value)
+
+
+env.filters["mask_ip"] = mask_ip
+
+
 tmpl = env.get_template("report_template.html")
 html = tmpl.render(now=now, targets=TARGETS, sites=sites, events=events)
 site = Path("site")

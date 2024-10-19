@@ -74,7 +74,7 @@
                         {% for c in cookies.values() %}
                         <tr>
                             <td>{{ c["name"] }}</td>
-                            <td>{{ c["value"]|truncate(50) }}</td>
+                            <td>{{ c["value"]|mask_ip|truncate(50) }}</td>
                             <td>{{ c["domain"] }}</td>
                             <td>{{ c["expiry_dt"] }}</td>
                         </tr>
