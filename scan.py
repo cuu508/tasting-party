@@ -140,7 +140,7 @@ for domain in catalog.domains():
     sites[domain] = {}
     cookielist.sort(key=lambda item: item["name"])
     for item in cookielist:
-        if "expiry" in item:
+        if item.get("expiry"):
             item["expiry_dt"] = datetime.fromtimestamp(item["expiry"]).date()
         sites[domain][item["name"]] = item
 
