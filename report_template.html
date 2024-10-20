@@ -7,6 +7,9 @@
 </head>
 <body>
     <style type="text/css">
+        p {
+            max-width: 800px;
+        }
         table {
             border-collapse: collapse;
         }
@@ -18,11 +21,13 @@
 
         td.x {
             background: #FEE;
+            color: #A00;
             text-align: center;
         }
 
-        td.a {
+        details table {
             font-family: monospace;
+            font-size: small;
         }
 
     </style>
@@ -60,10 +65,10 @@
                     <td></td>
                 {% endif %}
             {% endfor %}
-            <td class="a">
+            <td>
                 {% if cookies|length %}
                 <details>
-                    <summary>{{ cookies|length }}</summary>
+                    <summary>{{ cookies|length }} sīkdatne{% if cookies|length > 1 %}s{% endif%}</summary>
                     <table>
                         <tr>
                             <th>Vārds</th>
