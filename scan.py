@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import json
-import re
+import sqlite3
+import tempfile
 import time
 from datetime import UTC, datetime
 from pathlib import Path
@@ -14,33 +15,45 @@ from selenium_stealth import stealth
 TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*"]
 
 
-class CookieLoader(object):
-    def __init__(self):
-        self._driver = None
+def read_chrome_cookiedb(path):
+    with sqlite3.connect(path) as conn:
+        conn.row_factory = sqlite3.Row
+        res = conn.execute(
+            """SELECT
+                name,
+                host_key as domain,
+                is_httponly as httpOnly,
+                iif(expires_utc, (expires_utc / 1000000) - 11644473600, 0) as expiry
+            FROM cookies"""
+        )
 
-    def driver(self):
-        if not self._driver:
-            opts = webdriver.ChromeOptions()
-            opts.add_argument("--headless=new")
-            opts.add_argument("--window-size=2560,1440")
-            opts.add_experimental_option("excludeSwitches", ["enable-automation"])
-            opts.add_experimental_option("useAutomationExtension", False)
-            service = webdriver.ChromeService(executable_path="/usr/bin/chromedriver")
-            self._driver = webdriver.Chrome(options=opts, service=service)
-            stealth(
-                self._driver,
-                languages=["en-US", "en"],
-                vendor="Google Inc.",
-                platform="Win32",
-                webgl_vendor="Intel Inc.",
-                renderer="Intel Iris OpenGL Engine",
-                fix_hairline=True,
-            )
+        return [dict(row) for row in res.fetchall()]
 
-        return self._driver
 
-    def get_cookies(self, url):
-        d = self.driver()
+def make_driver(user_dir):
+    opts = webdriver.ChromeOptions()
+    opts.add_argument("--headless=new")
+    opts.add_argument("--window-size=2560,1440")
+    opts.add_argument(f"--user-data-dir={user_dir}")
+    opts.add_experimental_option("excludeSwitches", ["enable-automation"])
+    opts.add_experimental_option("useAutomationExtension", False)
+    service = webdriver.ChromeService(executable_path="/usr/bin/chromedriver")
+    d = webdriver.Chrome(options=opts, service=service)
+    stealth(
+        d,
+        languages=["en-US", "en"],
+        vendor="Google Inc.",
+        platform="Win32",
+        webgl_vendor="Intel Inc.",
+        renderer="Intel Iris OpenGL Engine",
+        fix_hairline=True,
+    )
+    return d
+
+
+def load_cookies(url):
+    with tempfile.TemporaryDirectory() as user_dir:
+        d = make_driver(user_dir)
         d.get(url)
         time.sleep(3)
 
@@ -66,8 +79,11 @@ class CookieLoader(object):
         # 3. Scroll to the top of the page
         webdriver.ActionChains(d).scroll_by_amount(0, -scrollh).perform()
         time.sleep(3)
+        d.quit()
 
-        return d.get_cookies()
+        # d.get_cookies() does not return httpOnly cookies, so read them from
+        # chromium's sqlite database:
+        return read_chrome_cookiedb(user_dir + "/Default/Cookies")
 
 
 class Catalog(object):
@@ -112,21 +128,20 @@ class Catalog(object):
         return s.split("\n")
 
 
-loader = CookieLoader()
 catalog = Catalog()
 sites = {}
 for domain in catalog.domains():
     cookielist = catalog.get_cookies(domain)
     if cookielist is None:
         print(f"Loading cookies for { domain }")
-        cookielist = loader.get_cookies(f"https://{ domain }")
+        cookielist = load_cookies(f"https://{ domain }")
         catalog.set_cookies(domain, cookielist)
 
     sites[domain] = {}
     cookielist.sort(key=lambda item: item["name"])
     for item in cookielist:
         if "expiry" in item:
-            item["expiry_dt"] = datetime.fromtimestamp(item["expiry"])
+            item["expiry_dt"] = datetime.fromtimestamp(item["expiry"]).date()
         sites[domain][item["name"]] = item
 
 events = []
@@ -137,13 +152,6 @@ events.sort(reverse=True)
 
 
 # Render result
-now = datetime.now(UTC)
-ts = now.strftime("%Y%m%d")
-
-
-env = Environment(loader=FileSystemLoader("."))
-
-
 def matching(target, cookies):
     if target.endswith("*"):
         target = target[:-1]
@@ -151,21 +159,15 @@ def matching(target, cookies):
     return target in cookies
 
 
+env = Environment(loader=FileSystemLoader("."))
 env.tests["matching"] = matching
 
-
-def mask_ip(value):
-    return re.sub(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}", "***", value)
-
-
-env.filters["mask_ip"] = mask_ip
-
-
 tmpl = env.get_template("report_template.html")
+now = datetime.now(UTC)
 html = tmpl.render(now=now, targets=TARGETS, sites=sites, events=events)
 site = Path("site")
 site.mkdir(exist_ok=True)
 with open("site/index.html", "w") as f:
     f.write(html)
-with open(f"site/{ts}.html", "w") as f:
+with open(f"site/{now:%Y%m%d}.html", "w") as f:
     f.write(html)

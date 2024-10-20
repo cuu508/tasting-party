@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ now.date() }}</title>
+    <title>Atskaite: sīkdatnes, ko uzstāda pirms lietotāja atļaujas saņemšanas</title>
 </head>
 <body>
     <style type="text/css">
@@ -72,15 +72,15 @@
                     <table>
                         <tr>
                             <th>Vārds</th>
-                            <th>Vērtība</th>
                             <th>Domēns</th>
+                            <th>HttpOnly</th>
                             <th>Termiņš</th>
                         </tr>
                         {% for c in cookies.values() %}
                         <tr>
                             <td>{{ c["name"] }}</td>
-                            <td>{{ c["value"]|mask_ip|truncate(50) }}</td>
                             <td>{{ c["domain"] }}</td>
+                            <td>{% if c["httpOnly"] %}jā{% endif %}</td>
                             <td>{{ c["expiry_dt"] }}</td>
                         </tr>
                         {% endfor %}
