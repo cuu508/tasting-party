@@ -12,7 +12,6 @@ autoblitz.lv
 autobrava.lv
 ba.lv
 balticdata.lv
-barbora.lv
 bb.lv
 benu.lv
 betsafe.lv
