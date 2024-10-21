@@ -12,7 +12,7 @@ from selenium import webdriver
 from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from selenium_stealth import stealth
 
-TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*"]
+TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*", "Gdynp"]
 
 
 def read_chrome_cookiedb(path):
@@ -113,7 +113,12 @@ class Catalog(object):
                 for removed_cookie in state - new_state:
                     result.append((d, domain, removed_cookie, False))
                 for added_cookie in new_state - state:
-                    result.append((d, domain, added_cookie, True))
+                    if d.isoformat() < "2024-10-21" and added_cookie == "Gdynp":
+                        # We changed data collection method here causing a bunch
+                        # of false positives, filter them out-
+                        pass
+                    else:
+                        result.append((d, domain, added_cookie, True))
 
             state = new_state
 
