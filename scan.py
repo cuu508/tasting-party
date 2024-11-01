@@ -174,7 +174,7 @@ env = Environment(loader=FileSystemLoader("."))
 env.tests["matching"] = cookie_match
 env.filters["format_date_lv"] = lambda d: format_date(d, "EEEE, d. MMMM", "lv_LV")
 
-tmpl = env.get_template("report_template.html")
+tmpl = env.get_template("report_template.jinja2")
 now = datetime.now(UTC)
 html = tmpl.render(now=now, targets=TARGETS, sites=sites, events=events)
 site = Path("site")
