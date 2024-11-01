@@ -12,7 +12,11 @@ from selenium import webdriver
 from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from selenium_stealth import stealth
 
+# The cookies we show in the report table
 TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*", "Gdynp"]
+# The cookies we track in the changes section. Excludes Gdynp as
+# on several sites it seems to flip on and off frequently.
+CHANGES_TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*"]
 
 
 def read_chrome_cookiedb(path):
@@ -86,6 +90,13 @@ def load_cookies(url):
         return read_chrome_cookiedb(user_dir + "/Default/Cookies")
 
 
+def cookie_match(target, cookies):
+    if target.endswith("*"):
+        target = target[:-1]
+        return any(name.startswith(target) for name in cookies)
+    return target in cookies
+
+
 class Catalog(object):
     def __init__(self):
         now = datetime.now(UTC)
@@ -106,7 +117,8 @@ class Catalog(object):
                 continue
 
             doc = json.loads(path.open().read())
-            new_state = set(c["name"] for c in doc if c["name"] in TARGETS)
+            names = set(c["name"] for c in doc)
+            new_state = set(t for t in CHANGES_TARGETS if cookie_match(t, names))
 
             if state is not None:
                 d = datetime.strptime(subdir.name, "%Y%m%d").date()
@@ -157,15 +169,8 @@ events.sort(reverse=True)
 
 
 # Render result
-def matching(target, cookies):
-    if target.endswith("*"):
-        target = target[:-1]
-        return any(name.startswith(target) for name in cookies)
-    return target in cookies
-
-
 env = Environment(loader=FileSystemLoader("."))
-env.tests["matching"] = matching
+env.tests["matching"] = cookie_match
 
 tmpl = env.get_template("report_template.html")
 now = datetime.now(UTC)
