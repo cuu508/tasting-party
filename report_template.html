@@ -1,148 +1,168 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Atskaite: sīkdatnes, ko uzstāda pirms lietotāja atļaujas saņemšanas</title>
-</head>
-<body>
-    <style type="text/css">
-        p {
-            max-width: 800px;
-        }
-        table {
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 0.5em;
-            min-width: 60px;
-        }
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>
+            Atskaite: sīkdatnes, ko uzstāda pirms lietotāja atļaujas saņemšanas
+        </title>
+    </head>
+    <body>
+        <style type="text/css">
+            p {
+                max-width: 800px;
+            }
+            table {
+                border-collapse: collapse;
+            }
+            th,
+            td {
+                border: 1px solid #ddd;
+                padding: 0.5em;
+                min-width: 60px;
+            }
 
-        td.x {
-            background: #FEE;
-            color: #A00;
-            text-align: center;
-        }
+            td.x {
+                background: #fee;
+                color: #a00;
+                text-align: center;
+            }
 
-        details table {
-            font-family: monospace;
-            font-size: small;
-        }
+            details table {
+                font-family: monospace;
+                font-size: small;
+            }
 
-    </style>
-    <p>
-        Tabulā redzams, kādas sīkdatnes dažādas vietnes uzstāda apmeklētāja
-        pārlūkprogrammā pirmā apmeklējuma laikā, pirms apmeklētājs devis piekrišanu
-        sīkdatņu uzstādīšanai.
-    </p>
-    <p>
-        Ja redzi savu vietni tabulā ar "jā" tai līdzās, lūdzu izlabo,
-        lai izsekošanas, reklāmu, statistikas un citas ne-obligātās sīkdatnes
-        tiktu uzstādītas tikai pēc lietotāja atļaujas saņemšanas. Datu valsts inspekcijas
-        satatavotajās <a href="https://www.dvi.gov.lv/lv/media/1517/download">vadlīnijās</a>
-        var iepazīties ar prasībām sīkdatņu izmantošanai tīmekļa vietnēs.
-    </p>
-    <p>
-        Sagatavots <strong>{{ now.date() }}</strong>, izmantojot
-        <a href="https://github.com/cuu508/tasting-party">tasting-party</a>.
-    </p>
-    <table>
-        <tr>
-            <th>Vietne</th>
-            {% for target in targets %}
-            <th>{{ target }}</th>
-            {% endfor %}
-            <th>Visas sīkdatnes</th>
-        </tr>
-        {% for domain, cookies in sites.items() %}
-        <tr>
-            <td><a href="https://{{ domain }}">{{ domain }}</a></td>
-            {% for target in targets%}
-                {% if target is matching cookies %}
-                    <td class="x">Jā</td>
+            h3 {
+                font-weight: normal;
+            }
+
+            .changes {
+                list-style: none;
+                margin: 0 0 0 20px;
+                padding: 0;
+            }
+        </style>
+        <p>
+            Tabulā redzams, kādas sīkdatnes dažādas vietnes uzstāda apmeklētāja
+            pārlūkprogrammā pirmā apmeklējuma laikā, pirms apmeklētājs devis
+            piekrišanu sīkdatņu uzstādīšanai.
+        </p>
+        <p>
+            Ja redzi savu vietni tabulā ar "jā" tai līdzās, lūdzu izlabo, lai
+            izsekošanas, reklāmu, statistikas un citas ne-obligātās sīkdatnes
+            tiktu uzstādītas tikai pēc lietotāja atļaujas saņemšanas. Datu
+            valsts inspekcijas satatavotajās
+            <a href="https://www.dvi.gov.lv/lv/media/1517/download"
+                >vadlīnijās</a
+            >
+            var iepazīties ar prasībām sīkdatņu izmantošanai tīmekļa vietnēs.
+        </p>
+        <p>
+            Sagatavots <strong>{{ now.date() }}</strong>, izmantojot
+            <a href="https://github.com/cuu508/tasting-party">tasting-party</a>.
+        </p>
+        <table>
+            <tr>
+                <th>Vietne</th>
+                {% for target in targets %}
+                <th>{{ target }}</th>
+                {% endfor %}
+                <th>Visas sīkdatnes</th>
+            </tr>
+            {% for domain, cookies in sites.items() %}
+            <tr>
+                <td><a href="https://{{ domain }}">{{ domain }}</a></td>
+                {% for target in targets%} {% if target is matching cookies %}
+                <td class="x">Jā</td>
                 {% else %}
-                    <td></td>
-                {% endif %}
+                <td></td>
+                {% endif %} {% endfor %}
+                <td>
+                    {% if cookies|length %}
+                    <details>
+                        <summary>
+                            {{ cookies|length }} sīkdatne{% if cookies|length >
+                            1 %}s{% endif%}
+                        </summary>
+                        <table>
+                            <tr>
+                                <th>Vārds</th>
+                                <th>Domēns</th>
+                                <th>HttpOnly</th>
+                                <th>Termiņš</th>
+                            </tr>
+                            {% for c in cookies.values() %}
+                            <tr>
+                                <td>{{ c["name"] }}</td>
+                                <td>{{ c["domain"] }}</td>
+                                <td>{% if c["httpOnly"] %}jā{% endif %}</td>
+                                <td>{{ c["expiry_dt"] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </details>
+                    {% else %}–{% endif %}
+                </td>
+            </tr>
             {% endfor %}
-            <td>
-                {% if cookies|length %}
-                <details>
-                    <summary>{{ cookies|length }} sīkdatne{% if cookies|length > 1 %}s{% endif%}</summary>
-                    <table>
-                        <tr>
-                            <th>Vārds</th>
-                            <th>Domēns</th>
-                            <th>HttpOnly</th>
-                            <th>Termiņš</th>
-                        </tr>
-                        {% for c in cookies.values() %}
-                        <tr>
-                            <td>{{ c["name"] }}</td>
-                            <td>{{ c["domain"] }}</td>
-                            <td>{% if c["httpOnly"] %}jā{% endif %}</td>
-                            <td>{{ c["expiry_dt"] }}</td>
-                        </tr>
-                        {% endfor %}
-                    </table>
-                </details>
-                {% else %}–{% endif %}
-            </td>
-        </tr>
+        </table>
+
+        <h2>Izmaiņu vēsture</h2>
+        {% for date, item in events|groupby(0)|sort(reverse=True) %}
+            <h3>{{ date|format_date_lv|capitalize }}</h3>
+            <ul class="changes">
+            {% for date, domain, cookie, added in item|sort %}
+            <li>
+                {% if added %}
+                    🔴 Vietne <a href="https://{{ domain }}">{{ domain }}</a>
+                    sāk uzstādīt sīkdatni <strong>{{ cookie }}</strong>.
+                {% else %}
+                    🟢 Vietne <a href="https://{{ domain }}">{{ domain }}</a>
+                    pārstāj uzstādīt sīkdatni <strong>{{ cookie }}</strong>.
+                {% endif %}
+            </li>
+            {% endfor %}
+            </ul>
         {% endfor %}
-    </table>
 
-    <h2>Izmaiņu vēsture</h2>
-    <ul>
-    {% for ts, domain, cookie, added in events %}
-        <li>
-            {{ ts }}
-            {% if added %}
-                😭 Vietne <a href="https://{{ domain }}">{{ domain }}</a> sāk uzstādīt sīkdatni <code>{{ cookie }}</code>.
-            {% else %}
-                🥳 Vietne <a href="https://{{ domain }}">{{ domain }}</a> pārstāj uzstādīt sīkdatni <code>{{ cookie }}</code>.
-            {% endif %}
-        </li>
-    {% endfor %}
-    </ul>
-
-    <h2>Sīkdatņu nosaukumu atšifrējumi</h2>
-    <table>
-        <tr>
-            <th>Sīkdatne</th>
-            <th>Kategorija</th>
-            <th>Pakalpojums</th>
-        </tr>
-        <tr>
-            <td>_ga</td>
-            <td>Statistika</td>
-            <td>Google Analytics</td>
-        </tr>
-        <tr>
-            <td>_fbp</td>
-            <td>Mārketings</td>
-            <td>Facebook Pixel</td>
-        </tr>
-        <tr>
-            <td>_clck</td>
-            <td>Statistika</td>
-            <td>Microsoft Clarity</td>
-        </tr>
-        <tr>
-            <td>_pcid</td>
-            <td>Statistika</td>
-            <td>Piano Analytics</td>
-        </tr>
-        <tr>
-            <td>_hj*</td>
-            <td>Statistika</td>
-            <td>HotJar</td>
-        </tr>
-        <tr>
-            <td>Gdynp</td>
-            <td>Statistika</td>
-            <td>Gemius</td>
-        </tr>
-    </table>
-</body>
+        <h2>Sīkdatņu nosaukumu atšifrējumi</h2>
+        <table>
+            <tr>
+                <th>Sīkdatne</th>
+                <th>Kategorija</th>
+                <th>Pakalpojums</th>
+            </tr>
+            <tr>
+                <td>_ga</td>
+                <td>Statistika</td>
+                <td>Google Analytics</td>
+            </tr>
+            <tr>
+                <td>_fbp</td>
+                <td>Mārketings</td>
+                <td>Facebook Pixel</td>
+            </tr>
+            <tr>
+                <td>_clck</td>
+                <td>Statistika</td>
+                <td>Microsoft Clarity</td>
+            </tr>
+            <tr>
+                <td>_pcid</td>
+                <td>Statistika</td>
+                <td>Piano Analytics</td>
+            </tr>
+            <tr>
+                <td>_hj*</td>
+                <td>Statistika</td>
+                <td>HotJar</td>
+            </tr>
+            <tr>
+                <td>Gdynp</td>
+                <td>Statistika</td>
+                <td>Gemius</td>
+            </tr>
+        </table>
+    </body>
 </html>

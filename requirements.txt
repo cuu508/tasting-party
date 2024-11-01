@@ -1,3 +1,4 @@
+babel
 jinja2
 selenium
 selenium-stealth

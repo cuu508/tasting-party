@@ -11,6 +11,7 @@ from jinja2 import Environment, FileSystemLoader
 from selenium import webdriver
 from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from selenium_stealth import stealth
+from babel.dates import format_date
 
 # The cookies we show in the report table
 TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*", "Gdynp"]
@@ -171,6 +172,7 @@ events.sort(reverse=True)
 # Render result
 env = Environment(loader=FileSystemLoader("."))
 env.tests["matching"] = cookie_match
+env.filters["format_date_lv"] = lambda d: format_date(d, "EEEE, d. MMMM", "lv_LV")
 
 tmpl = env.get_template("report_template.html")
 now = datetime.now(UTC)
