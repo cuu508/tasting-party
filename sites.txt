@@ -100,6 +100,7 @@ likta.lv
 lka.edu.lv,education
 lkr.lv,radio_tv
 lma.lv,education
+lmt.lv,mobile
 lounge-fm.lv,radio_tv
 lr1.lsm.lv,radio_tv
 lr2.lsm.lv,radio_tv
@@ -176,6 +177,7 @@ spoki.lv,news
 sportacentrs.com,news
 sportazinas.com,news
 starfm.tv3.lv,radio_tv
+tele2.lv,mobile
 tera.lv,ecommerce
 tet.lv/veikals
 topradio.tv3.lv,radio_tv
