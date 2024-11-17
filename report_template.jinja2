@@ -8,59 +8,7 @@
         </title>
     </head>
     <body>
-        <style type="text/css">
-            p {
-                max-width: 800px;
-            }
-
-            .field {
-                display: flex;
-                gap: 15px;
-                margin-bottom: 10px;
-            }
-
-            .field > :first-child {
-                width: 200px;
-                text-align: right;
-            }
-
-            table {
-                border-collapse: collapse;
-                white-space: nowrap;
-            }
-
-            th,
-            td {
-                border: 1px solid #ddd;
-                padding: 0.5em;
-                min-width: 60px;
-            }
-
-            td.x {
-                background: #fee;
-                color: #a00;
-                text-align: center;
-            }
-
-            details table {
-                font-family: monospace;
-                font-size: small;
-            }
-
-            h2 {
-                font-size: 20px;
-            }
-
-            h3 {
-                font-weight: normal;
-            }
-
-            .changes {
-                list-style: none;
-                margin: 0 0 0 20px;
-                padding: 0;
-            }
-        </style>
+        <style type="text/css">{% include "assets/style.css" %}</style>
         <p>
             Tabulā redzams, kādas sīkdatnes dažādas vietnes uzstāda apmeklētāja
             pārlūkprogrammā pirmā apmeklējuma laikā, pirms apmeklētājs devis
@@ -71,41 +19,31 @@
             izsekošanas, reklāmu, statistikas un citas ne-obligātās sīkdatnes
             tiktu uzstādītas tikai pēc lietotāja atļaujas saņemšanas. Datu
             valsts inspekcijas satatavotajās
-            <a href="https://www.dvi.gov.lv/lv/media/1517/download"
-                >vadlīnijās</a
-            >
+            <a href="https://www.dvi.gov.lv/lv/media/1517/download">vadlīnijās</a>
             var iepazīties ar prasībām sīkdatņu izmantošanai tīmekļa vietnēs.
         </p>
-        <p>
-            Sagatavots <strong>{{ now.date() }}</strong>, izmantojot
-            <a href="https://github.com/cuu508/tasting-party">tasting-party</a>.
-        </p>
 
-        <h2>
-            Filtrēšana
-            <small>(<span id="numVisible">{{ num_visible }}</span> no {{ sites|length }})</small>
-        </h2>
-        <div class="field">
-            <label>Sīkdatņu problēmas</label>
-            <label><input id="showRedOnly" type="checkbox" checked />Rādīt tikai, ja ir sarkanas rūtiņas</label>
-            </div>
-        </div>
-        <div class="field">
-            <label>Kategorija</label>
-            <select id="category">
-                <option value="">Jebkura</option>
-                <option value="pharmacy">Aptiekas</option>
-                <option value="dealership">Autosaloni</option>
-                <option value="gambling">Azartspēles</option>
-                <option value="ecommerce">Interneta veikali</option>
-                <option value="mobile">Mobilie operatori</option>
-                <option value="radio_tv">Radio, TV</option>
-                <option value="education">Skolas, augstskolas</option>
-                <option value="news">Ziņu portāli</option>
-            </select>
-        </div>
-        <br>
         <table id="sites">
+            <tr>
+                <td id="filtering" colspan="9">
+                    <h2>
+                        Filtrēšana
+                        <small>(<span id="numVisible">{{ num_visible }}</span> no {{ sites|length }})</small>
+                    </h2>
+                    <label><input id="showRedOnly" type="checkbox" checked />Rādīt tikai, ja ir sarkanas rūtiņas</label>
+                    <select id="category">
+                        <option value="">Jebkura kategorija</option>
+                        <option value="pharmacy">Aptiekas</option>
+                        <option value="dealership">Autosaloni</option>
+                        <option value="gambling">Azartspēles</option>
+                        <option value="ecommerce">Interneta veikali</option>
+                        <option value="mobile">Mobilie operatori</option>
+                        <option value="radio_tv">Radio, TV</option>
+                        <option value="education">Skolas, augstskolas</option>
+                        <option value="news">Ziņu portāli</option>
+                    </select>
+                </td>
+            </tr>
             <tr>
                 <th>Vietne</th>
                 {% for target in targets %}
@@ -213,29 +151,12 @@
                 <td>Google Analytics</td>
             </tr>
         </table>
+
+        <hr>
+        <p>
+            Sagatavots <strong>{{ now.date() }}</strong>, izmantojot
+            <a href="https://github.com/cuu508/tasting-party">tasting-party</a>.
+        </p>
     </body>
-    <script>
-        window.addEventListener("load", (event) => {
-            function applyFilters() {
-                var v = 0;
-                sites.querySelectorAll("tr.site").forEach(function(tr) {
-                    if (showRedOnly.checked && !tr.classList.contains("red")) {
-                        tr.style.display = "none";
-                        return;
-                    }
-                    if (category.value && !tr.classList.contains(category.value)) {
-                        tr.style.display = "none";
-                        return;
-                    }
-
-                    tr.style.display = "";
-                    v += 1;
-                });
-                numVisible.innerText = v;
-            };
-
-            showRedOnly.addEventListener("change", applyFilters);
-            category.addEventListener("change", applyFilters);
-        });
-    </script>
+    <script>{% include "assets/filtering.js" %}</script>
 </html>
