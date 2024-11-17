@@ -12,10 +12,23 @@
             p {
                 max-width: 800px;
             }
+
+            .field {
+                display: flex;
+                gap: 15px;
+                margin-bottom: 10px;
+            }
+
+            .field > :first-child {
+                width: 200px;
+                text-align: right;
+            }
+
             table {
                 border-collapse: collapse;
                 white-space: nowrap;
             }
+
             th,
             td {
                 border: 1px solid #ddd;
@@ -32,6 +45,10 @@
             details table {
                 font-family: monospace;
                 font-size: small;
+            }
+
+            h2 {
+                font-size: 20px;
             }
 
             h3 {
@@ -63,7 +80,32 @@
             Sagatavots <strong>{{ now.date() }}</strong>, izmantojot
             <a href="https://github.com/cuu508/tasting-party">tasting-party</a>.
         </p>
-        <table>
+
+        <h2>
+            Filtrēšana
+            <small>(<span id="numVisible">{{ num_visible }}</span> no {{ sites|length }})</small>
+        </h2>
+        <div class="field">
+            <label>Sīkdatņu problēmas</label>
+            <label><input id="showRedOnly" type="checkbox" checked />Rādīt tikai, ja ir sarkanas rūtiņas</label>
+            </div>
+        </div>
+        <div class="field">
+            <label>Kategorija</label>
+            <select id="category">
+                <option value="">Jebkura</option>
+                <option value="ecommerce">Interneta veikali</option>
+                <option value="pharmacy">Aptiekas</option>
+                <option value="gambling">Azartspēles</option>
+                <option value="news">Ziņu portāli</option>
+                <option value="dealership">Autosaloni</option>
+                <option value="education">Skolas, augstskolas</option>
+                <option value="mobile">Mobilie operatori</option>
+                <option value="radio_tv">Radio, TV</option>
+            </select>
+        </div>
+        <br>
+        <table id="sites">
             <tr>
                 <th>Vietne</th>
                 {% for target in targets %}
@@ -72,7 +114,7 @@
                 <th>Visas sīkdatnes</th>
             </tr>
             {% for domain, cookies in sites.items() %}
-            <tr>
+            <tr {% if domain|site_classes %}class="{{ domain|site_classes }}"{% endif %} {% if cookies is not matching_any%}style="display: none"{% endif%}>
                 <td><a href="https://{{ domain }}">{{ domain }}</a></td>
                 {% for target in targets%} {% if target is matching cookies %}
                 <td class="x">Jā</td>
@@ -107,6 +149,7 @@
                 </td>
             </tr>
             {% endfor %}
+            </tbody>
         </table>
 
         <h2>Izmaiņu vēsture</h2>
@@ -166,4 +209,28 @@
             </tr>
         </table>
     </body>
+    <script>
+        window.addEventListener("load", (event) => {
+            function applyFilters() {
+                var v = 0;
+                sites.querySelectorAll("tr.site").forEach(function(tr) {
+                    if (showRedOnly.checked && !tr.classList.contains("red")) {
+                        tr.style.display = "none";
+                        return;
+                    }
+                    if (category.value && !tr.classList.contains(category.value)) {
+                        tr.style.display = "none";
+                        return;
+                    }
+
+                    tr.style.display = "";
+                    v += 1;
+                });
+                numVisible.innerText = v;
+            };
+
+            showRedOnly.addEventListener("change", applyFilters);
+            category.addEventListener("change", applyFilters);
+        });
+    </script>
 </html>

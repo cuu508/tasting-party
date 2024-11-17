@@ -98,12 +98,28 @@ def cookie_match(target, cookies):
     return target in cookies
 
 
-class Catalog(object):
+def any_target_match(cookies):
+    return any(cookie_match(target, cookies) for target in TARGETS)
+
+
+class Catalog:
     def __init__(self):
         now = datetime.now(UTC)
         ts = now.strftime("%Y%m%d")
         self.today_path = Path("scans") / ts
         self.today_path.mkdir(parents=True, exist_ok=True)
+
+        self._domains = {}
+        s = open("sites.txt").read()
+        for line in s.split("\n"):
+            if not line:
+                continue
+
+            parts = line.split(",")
+            if len(parts) == 1:
+                parts.append("")
+
+            self._domains[parts[0]] = parts[1]
 
     def get_cookies(self, domain):
         path = self.today_path / domain.replace("/", "-")
@@ -142,8 +158,10 @@ class Catalog(object):
         path.open("w").write(json.dumps(cookielist))
 
     def domains(self):
-        s = open("sites.txt", "r").read()
-        return s.split("\n")
+        return self._domains.keys()
+
+    def category(self, domain):
+        return self._domains[domain]
 
 
 catalog = Catalog()
@@ -168,18 +186,37 @@ for domain in catalog.domains():
 
 events.sort(reverse=True)
 
+site_classes = {}
+for domain, cookies in sites.items():
+    parts = ["site"]
+    if any_target_match(cookies):
+        parts.append("red")
+    if category := catalog.category(domain):
+        parts.append(category)
+    site_classes[domain] = " ".join(parts)
 
 # Render result
 env = Environment(loader=FileSystemLoader("."))
 env.tests["matching"] = cookie_match
+env.tests["matching_any"] = any_target_match
 env.filters["format_date_lv"] = lambda d: format_date(d, "EEEE, d. MMMM", "lv_LV")
+env.filters["site_classes"] = lambda domain: site_classes[domain]
 
 tmpl = env.get_template("report_template.jinja2")
-now = datetime.now(UTC)
-html = tmpl.render(now=now, targets=TARGETS, sites=sites, events=events)
+ctx = {
+    "now": datetime.now(UTC),
+    "targets": TARGETS,
+    "sites": sites,
+    "events": events,
+    "num_visible": sum(any_target_match(cookies) for cookies in sites.values()),
+}
+
+html = tmpl.render(**ctx)
 site = Path("site")
 site.mkdir(exist_ok=True)
 with open("site/index.html", "w") as f:
     f.write(html)
+
+now = ctx["now"]
 with open(f"site/{now:%Y%m%d}.html", "w") as f:
     f.write(html)
