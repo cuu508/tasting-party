@@ -7,13 +7,15 @@ akvaparks.lv
 andelemandele.lv,ecommerce
 anete.lv,ecommerce
 apollo.lv,news
+apotheka.lv,pharmacy ecommerce
+aptieka1.lv,pharmacy
 arsts.lv,news
 autoblitz.lv,dealership
 autobrava.lv,dealership
 ba.lv,education
 balticdata.lv,ecommerce
 bb.lv,news
-benu.lv,pharmacy
+benu.lv,pharmacy ecommerce
 betsafe.lv,gambling
 bezrindas.lv
 bilesuserviss.lv
@@ -34,7 +36,9 @@ delfi.lv,news
 dfi.lv,ecommerce
 diena.lv,news
 drogas.lv
-e-menessaptieka.lv,pharmacy
+e-euroaptieka.lv,pharmacy ecommerce
+e-menessaptieka.lv,pharmacy ecommerce
+e-saulesaptieka.lv,pharmacy ecommerce
 e.csdd.lv
 edurio.lv
 eltek.lv,ecommerce
@@ -57,9 +61,11 @@ gramatas.lndb.lv
 greenmotors.lv,dealership
 grindeks.com
 hobbyset.lv,ecommerce
+homeopatiskaaptieka.lv,pharmacy
 iauto.lv,news
 inbox.lv
 inserv.lv
+internetaptieka.lv,pharmacy
 internetaptieka.lv,pharmacy
 ir.lv,news
 itella.lv
@@ -79,6 +85,7 @@ kursors.lv,news
 la.lv,news
 laimz.lv,gambling
 lasi.lv,news
+latvijasaptiekas.lv,pharmacy
 latvijasradio.lsm.lv,radio_tv
 lelluteatris.lv
 leta.lv,news
@@ -101,6 +108,7 @@ majaiundarzam.lv,news
 maminuklubs.lv
 mammamuntetiem.lv
 mana.omniva.lv
+manaaptieka.lv,pharmacy
 manabalss.lv
 manizurnali.lv
 mans.lg.lv
@@ -108,6 +116,7 @@ maxtrade.lv,news
 mazda.lv,dealership
 medicine.lv
 mego.lv
+menessaptieka.lv,pharmacy
 meteofor.lv
 mixfm.lv,radio_tv
 mixnews.lv,news
