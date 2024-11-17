@@ -117,7 +117,7 @@ class Catalog:
 
             parts = line.split(",")
             if len(parts) == 1:
-                parts.append("")
+                parts.append("-")
 
             self._domains[parts[0]] = parts[1]
 

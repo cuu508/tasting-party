@@ -41,6 +41,7 @@
                         <option value="radio_tv">Radio, TV</option>
                         <option value="education">Skolas, augstskolas</option>
                         <option value="news">Ziņu portāli</option>
+                        <option value="-">Bez kategorijas</option>
                     </select>
                 </td>
             </tr>
@@ -52,7 +53,7 @@
                 <th>Visas sīkdatnes</th>
             </tr>
             {% for domain, cookies in sites.items() %}
-            <tr {% if domain|site_classes %}class="{{ domain|site_classes }}"{% endif %} {% if cookies is not matching_any%}style="display: none"{% endif%}>
+            <tr class="{{ domain|site_classes }}" {% if cookies is not matching_any%}style="display: none"{% endif%}>
                 <td><a href="https://{{ domain }}">{{ domain }}</a></td>
                 {% for target in targets%} {% if target is matching cookies %}
                 <td class="x">Jā</td>
@@ -95,7 +96,7 @@
             <h3>{{ date|format_date_lv|capitalize }}</h3>
             <ul class="changes">
             {% for date, domain, cookie, added in item|sort %}
-            <li>
+            <li class="{{ domain|site_classes }}">
                 {% if added %}
                     🔴 Vietne <a href="https://{{ domain }}">{{ domain }}</a>
                     sāk uzstādīt sīkdatni <strong>{{ cookie }}</strong>.
