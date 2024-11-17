@@ -14,10 +14,10 @@ from selenium_stealth import stealth
 from babel.dates import format_date
 
 # The cookies we show in the report table
-TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*", "Gdynp"]
+TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*", "Gdynp", "__utm*"]
 # The cookies we track in the changes section. Excludes Gdynp as
 # on several sites it seems to flip on and off frequently.
-CHANGES_TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*"]
+CHANGES_TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*", "__utm*"]
 
 
 def read_chrome_cookiedb(path):
