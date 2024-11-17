@@ -1,5 +1,19 @@
 window.addEventListener("load", (event) => {
     function applyFilters() {
+        // Update URL
+        if (window.history && window.history.replaceState) {
+            var hashParts = [];
+            if (showRedOnly.checked) {
+                hashParts.push("show_red_only=1");
+            }
+            if (category.value) {
+                hashParts.push("category=" + category.value);
+            }
+
+            console.log("#" + hashParts.join("&"));
+            window.history.replaceState({}, "", "#" + hashParts.join("&"));
+        }
+
         var v = 0;
         // Table
         sites.querySelectorAll("tr.site").forEach(function (tr) {
@@ -29,4 +43,18 @@ window.addEventListener("load", (event) => {
 
     showRedOnly.addEventListener("change", applyFilters);
     category.addEventListener("change", applyFilters);
+
+    // Apply filters from hash
+    if (window.location.hash) {
+        var params = {};
+        var hashParts = window.location.hash.substring(1).split("&");
+        for (pair of hashParts) {
+            var nameValue = pair.split("=");
+            params[nameValue[0]] = nameValue[1];
+        }
+
+        showRedOnly.checked = params.show_red_only == "1";
+        category.value = params.category || "";
+        applyFilters();
+    }
 });
