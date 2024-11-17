@@ -36,6 +36,7 @@ delfi.lv,news
 dfi.lv,ecommerce
 diena.lv,news
 drogas.lv
+du.lv,education
 e-euroaptieka.lv,pharmacy ecommerce
 e-menessaptieka.lv,pharmacy ecommerce
 e-saulesaptieka.lv,pharmacy ecommerce
@@ -72,6 +73,7 @@ itella.lv
 janisroze.lv,ecommerce
 jauns.lv,news
 jelgava.lv
+jvlma.lv,education
 jysk.lv,ecommerce
 kartes.lv
 kia.lv,dealership
@@ -87,6 +89,7 @@ laimz.lv,gambling
 lasi.lv,news
 latvijasaptiekas.lv,pharmacy
 latvijasradio.lsm.lv,radio_tv
+lbtu.lv,education
 lelluteatris.lv
 leta.lv,news
 letonika.lv
@@ -94,13 +97,16 @@ lido.lv
 lieliskadavana.lv
 liepajniekiem.lv
 likta.lv
+lka.edu.lv,education
 lkr.lv,radio_tv
+lma.lv,education
 lounge-fm.lv,radio_tv
 lr1.lsm.lv,radio_tv
 lr2.lsm.lv,radio_tv
 lr4.lsm.lv,radio_tv
 lspa.lv
 ltrk.lv
+lu.lv,education
 lulu.lv
 lza.lv
 macibumateriali.lv
@@ -125,6 +131,7 @@ mnogoknig.lv,ecommerce
 morex.lv,ecommerce
 motofavorits.lv,dealership
 muzikas-video.lv,radio_tv
+naa.mil.lv,education
 naba.lsm.lv,radio_tv
 naba.lv,radio_tv
 narvesen.lv
@@ -156,6 +163,8 @@ retv.lv,radio_tv
 rigaslaiks.lv
 rml.lv,radio_tv
 rsu.lv,education
+rta.lv,education
+rtu.lv,education
 sadalestikls.lv
 santa.lv,news
 satori.lv,news
@@ -175,10 +184,12 @@ tv24.lv,radio_tv
 tv3.lv,news,radio_tv
 tvnet.lv,news
 uzdevumi.lv
+va.lv,education
 valmierasteatris.lv
 valmieraszinas.lv,news
 valmiermuiza.lv,ecommerce
 valoda.lv
+venta.lv,education
 ventasbalss.lv,news
 viada.lv
 virsi.lv
