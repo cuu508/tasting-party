@@ -58,6 +58,7 @@ h3 {
 
 .changes li {
     margin: 8px 0;
+    white-space: nowrap;
 }
 
 footer {
