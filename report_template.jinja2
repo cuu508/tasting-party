@@ -98,10 +98,10 @@
             {% for date, domain, cookie, added in item|sort %}
             <li class="{{ domain|site_classes }}">
                 {% if added %}
-                    🔴 Vietne <a href="https://{{ domain }}">{{ domain }}</a>
+                    🔴 <a href="https://{{ domain }}">{{ domain }}</a>
                     sāk uzstādīt sīkdatni <strong>{{ cookie }}</strong>.
                 {% else %}
-                    🟢 Vietne <a href="https://{{ domain }}">{{ domain }}</a>
+                    🟢 <a href="https://{{ domain }}">{{ domain }}</a>
                     pārstāj uzstādīt sīkdatni <strong>{{ cookie }}</strong>.
                 {% endif %}
             </li>
