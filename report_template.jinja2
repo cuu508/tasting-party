@@ -93,6 +93,7 @@
 
         <h2>Izmaiņu vēsture</h2>
         {% for date, item in events|groupby(0)|sort(reverse=True) %}
+        <div class="changes">
             <h3>{{ date|format_date_lv|capitalize }}</h3>
             <ul class="changes">
             {% for date, domain, cookie, added in item|sort %}
@@ -104,10 +105,12 @@
                     🟢 <a href="https://{{ domain }}">{{ domain }}</a>
                     pārstāj uzstādīt sīkdatni <strong>{{ cookie }}</strong>.
                 {% endif %}
-            </li>
+                </li>
             {% endfor %}
             </ul>
+        </div>
         {% endfor %}
+        <p id="changesEmpty" style="display: none">Nav ierakstu</p>
 
         <h2>Sīkdatņu nosaukumu atšifrējumi</h2>
         <table>
@@ -157,6 +160,6 @@
             Sagatavots <strong>{{ now.date() }}</strong>, izmantojot
             <a href="https://github.com/cuu508/tasting-party">tasting-party</a>.
         </footer>
+        <script>{% include "assets/filtering.js" %}</script>
     </body>
-    <script>{% include "assets/filtering.js" %}</script>
 </html>

@@ -32,13 +32,21 @@ window.addEventListener("load", (event) => {
         numVisible.innerText = v;
 
         // Events
-        document.querySelectorAll(".changes li").forEach(function (li) {
-            if (category.value && !li.classList.contains(category.value)) {
-                li.style.display = "none";
-            } else {
-                li.style.display = "";
-            }
+        var totalShown = 0;
+        document.querySelectorAll(".changes").forEach(function(div) {
+            var shown = 0;
+            div.querySelectorAll("li").forEach(function (li) {
+                if (category.value && !li.classList.contains(category.value)) {
+                    li.style.display = "none";
+                } else {
+                    li.style.display = "";
+                    shown += 1;
+                }
+            });
+            div.style.display = shown > 0 ? "" : "none";
+            totalShown += shown;
         });
+        changesEmpty.style.display = totalShown == 0 ? "" : "none";
     }
 
     showRedOnly.addEventListener("change", applyFilters);
