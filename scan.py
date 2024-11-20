@@ -10,6 +10,7 @@ from pathlib import Path
 from babel.dates import format_date
 from jinja2 import Environment, FileSystemLoader
 from selenium import webdriver
+from selenium.common.exceptions import MoveTargetOutOfBoundsException
 from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from selenium_stealth import stealth
 
@@ -74,7 +75,10 @@ def load_cookies(url):
         ]:
             action = ActionBuilder(d)
             action.pointer_action.move_to_location(x, y)
-            action.perform()
+            try:
+                action.perform()
+            except MoveTargetOutOfBoundsException as e:
+                print("Element is out of bounds: ", e)
 
         # 2. Scroll to the bottom of the page
         scrollh = d.execute_script("return document.body.scrollHeight")
