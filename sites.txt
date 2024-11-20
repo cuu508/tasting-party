@@ -215,6 +215,7 @@ latvenergo.lv
 latvija.gov.lv,gov
 latvijasaptiekas.lv,pharmacy
 latvijasradio.lsm.lv,radio_tv
+latvijastalrunis.lv
 lbtu.lv,education
 ldz.lv
 legit.lv,ecommerce
@@ -264,6 +265,7 @@ macibumateriali.lv,edu_tool
 magnum.lv
 majaiundarzam.lv,news
 makeup.lv,ecommerce
+makonix.com
 maminuklubs.lv
 mammamuntetiem.lv
 mana.omniva.lv
@@ -394,6 +396,7 @@ skandimotors.lv,dealership
 skola2030.lv,gov
 skolo.lv,edu_tool
 slageris.lv,radio_tv
+smiltenesnovads.lv
 smscredit.lv
 soma.lv,edu_tool
 spice.lv
@@ -472,9 +475,6 @@ vs.lv,news
 web-design.lv
 weekend.lv,ecommerce
 www.altum.lv
-www.latvijastalrunis.lv
-www.makonix.com
-www.smiltenesnovads.lv
 xsrotallietas.lv
 xtv.lv,news,radio_tv
 yandex.lv
