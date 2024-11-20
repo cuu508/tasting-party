@@ -7,11 +7,11 @@ import time
 from datetime import UTC, datetime
 from pathlib import Path
 
+from babel.dates import format_date
 from jinja2 import Environment, FileSystemLoader
 from selenium import webdriver
 from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from selenium_stealth import stealth
-from babel.dates import format_date
 
 # The cookies we show in the report table
 TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*", "Gdynp", "__utm*"]
@@ -164,59 +164,60 @@ class Catalog:
         return self._domains[domain]
 
 
-catalog = Catalog()
-sites = {}
-for domain in catalog.domains():
-    cookielist = catalog.get_cookies(domain)
-    if cookielist is None:
-        print(f"Loading cookies for { domain }")
-        cookielist = load_cookies(f"https://{ domain }")
-        catalog.set_cookies(domain, cookielist)
+if __name__ == "__main__":
+    catalog = Catalog()
+    sites = {}
+    for domain in catalog.domains():
+        cookielist = catalog.get_cookies(domain)
+        if cookielist is None:
+            print(f"Loading cookies for { domain }")
+            cookielist = load_cookies(f"https://{ domain }")
+            catalog.set_cookies(domain, cookielist)
 
-    sites[domain] = {}
-    cookielist.sort(key=lambda item: item["name"])
-    for item in cookielist:
-        if item.get("expiry"):
-            item["expiry_dt"] = datetime.fromtimestamp(item["expiry"]).date()
-        sites[domain][item["name"]] = item
+        sites[domain] = {}
+        cookielist.sort(key=lambda item: item["name"])
+        for item in cookielist:
+            if item.get("expiry"):
+                item["expiry_dt"] = datetime.fromtimestamp(item["expiry"]).date()
+            sites[domain][item["name"]] = item
 
-events = []
-for domain in catalog.domains():
-    events.extend(catalog.get_cookie_changes(domain))
+    events = []
+    for domain in catalog.domains():
+        events.extend(catalog.get_cookie_changes(domain))
 
-events.sort(reverse=True)
+    events.sort(reverse=True)
 
-site_classes = {}
-for domain, cookies in sites.items():
-    parts = ["site"]
-    if any_target_match(cookies):
-        parts.append("red")
-    if category := catalog.category(domain):
-        parts.append(category)
-    site_classes[domain] = " ".join(parts)
+    site_classes = {}
+    for domain, cookies in sites.items():
+        parts = ["site"]
+        if any_target_match(cookies):
+            parts.append("red")
+        if category := catalog.category(domain):
+            parts.append(category)
+        site_classes[domain] = " ".join(parts)
 
-# Render result
-env = Environment(loader=FileSystemLoader("."))
-env.tests["matching"] = cookie_match
-env.tests["matching_any"] = any_target_match
-env.filters["format_date_lv"] = lambda d: format_date(d, "EEEE, d. MMMM", "lv_LV")
-env.filters["site_classes"] = lambda domain: site_classes[domain]
+    # Render result
+    env = Environment(loader=FileSystemLoader("."))
+    env.tests["matching"] = cookie_match
+    env.tests["matching_any"] = any_target_match
+    env.filters["format_date_lv"] = lambda d: format_date(d, "EEEE, d. MMMM", "lv_LV")
+    env.filters["site_classes"] = lambda domain: site_classes[domain]
 
-tmpl = env.get_template("report_template.jinja2")
-ctx = {
-    "now": datetime.now(UTC),
-    "targets": TARGETS,
-    "sites": sites,
-    "events": events,
-    "num_visible": sum(any_target_match(cookies) for cookies in sites.values()),
-}
+    tmpl = env.get_template("report_template.jinja2")
+    ctx = {
+        "now": datetime.now(UTC),
+        "targets": TARGETS,
+        "sites": sites,
+        "events": events,
+        "num_visible": sum(any_target_match(cookies) for cookies in sites.values()),
+    }
 
-html = tmpl.render(**ctx)
-site = Path("site")
-site.mkdir(exist_ok=True)
-with open("site/index.html", "w") as f:
-    f.write(html)
+    html = tmpl.render(**ctx)
+    site = Path("site")
+    site.mkdir(exist_ok=True)
+    with open("site/index.html", "w") as f:
+        f.write(html)
 
-now = ctx["now"]
-with open(f"site/{now:%Y%m%d}.html", "w") as f:
-    f.write(html)
+    now = ctx["now"]
+    with open(f"site/{now:%Y%m%d}.html", "w") as f:
+        f.write(html)
