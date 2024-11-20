@@ -93,6 +93,7 @@ digiklase.lv,edu_tool
 directmap.lv
 discover.lv,ecommerce
 dobelesslimnica.lv,medicine
+dod.pieci.lv
 douglas.lv,ecommerce
 dpd.lv
 dpns.gov.lv,medicine
@@ -441,6 +442,7 @@ spx.lv
 ss.lv
 staburags.lv,news
 starfm.tv3.lv,radio_tv
+staroriga.lv
 stat.gov.lv,gov
 stenaline.lv
 stradini.lv,medicine
