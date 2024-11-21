@@ -20,7 +20,7 @@ apollo.lv,news
 apollokino.lv
 apotheka.lv,pharmacy ecommerce
 aptieka1.lv,pharmacy
-armino.lv,ecommerce
+armino.lv,ecommerce edu_tools
 arsts.lv,news
 aslimnica.lv,medicine
 atea.lv
@@ -348,6 +348,7 @@ ogresslimnica.lv,medicine
 oho.lv
 olybet.lv,gambling
 omniva.lv
+online.depo.lv,ecommerce
 online.lv
 onlinecasinoreports.lv,gambling
 onlinetrader.lv
