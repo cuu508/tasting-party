@@ -33,6 +33,7 @@ babystore.lv,ecommerce
 balta.lv
 balticdata.lv,ecommerce
 balticguru.eu,ecommerce
+balticmaps.eu
 balticom.lv
 bank.lv,bank
 barbora.lv,ecommerce
