@@ -434,6 +434,7 @@ smscredit.lv
 soma.lv,edu_tool
 spice.lv
 spins.lv,gambling
+spiritsandwine.lv,ecommerce
 spkc.gov.lv,gov
 spoki.lv,news
 sportacentrs.com,news
