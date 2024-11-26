@@ -10,7 +10,7 @@ from pathlib import Path
 from babel.dates import format_date
 from jinja2 import Environment, FileSystemLoader
 from selenium import webdriver
-from selenium.common.exceptions import MoveTargetOutOfBoundsException
+from selenium.common.exceptions import MoveTargetOutOfBoundsException, TimeoutException
 from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from selenium_stealth import stealth
 
@@ -60,7 +60,11 @@ def make_driver(user_dir):
 def load_cookies(url):
     with tempfile.TemporaryDirectory() as user_dir:
         d = make_driver(user_dir)
-        d.get(url)
+        try:
+            d.get(url)
+        except TimeoutException:
+            print(f"Timeout while loading {url}, skipping.")
+            return None
         time.sleep(3)
 
         # Now prod the page to cause more cookies to load:
@@ -172,18 +176,22 @@ if __name__ == "__main__":
     catalog = Catalog()
     sites = {}
     for domain in catalog.domains():
+        # Load cookies from local cache (catalog).
+        # If they are not in the cache, load the website.
         cookielist = catalog.get_cookies(domain)
         if cookielist is None:
             print(f"Loading cookies for { domain }")
             cookielist = load_cookies(f"https://{ domain }")
-            catalog.set_cookies(domain, cookielist)
+            if cookielist is not None:
+                catalog.set_cookies(domain, cookielist)
 
         sites[domain] = {}
-        cookielist.sort(key=lambda item: item["name"])
-        for item in cookielist:
-            if item.get("expiry"):
-                item["expiry_dt"] = datetime.fromtimestamp(item["expiry"]).date()
-            sites[domain][item["name"]] = item
+        if cookielist:
+            cookielist.sort(key=lambda item: item["name"])
+            for item in cookielist:
+                if item.get("expiry"):
+                    item["expiry_dt"] = datetime.fromtimestamp(item["expiry"]).date()
+                sites[domain][item["name"]] = item
 
     events = []
     for domain in catalog.domains():
