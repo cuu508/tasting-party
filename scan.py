@@ -155,11 +155,6 @@ def cookie_match(target: str, cookies: Iterable[str]) -> bool:
     return target in cookies
 
 
-def any_target_match(cookies: Iterable[str]) -> bool:
-    """Return True if any cookie listed in `TARGETS` is present in `cookies`."""
-    return any(cookie_match(target, cookies) for target in TARGETS)
-
-
 class Site:
     def __init__(self, domain, category, cookies):
         self.domain = domain
