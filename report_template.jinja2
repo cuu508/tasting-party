@@ -46,6 +46,7 @@
                         <option value="news">Ziņu portāli</option>
                         <option value="null">Bez kategorijas</option>
                     </select>
+                    <input id="search" type="text" placeholder="Meklē pēc adreses..." />
                 </td>
             </tr>
             <tr>
@@ -56,7 +57,7 @@
                 <th>Visas sīkdatnes</th>
             </tr>
             {% for site in catalog.sites %}
-            <tr class="{{ site.css_classes() }}" {% if not site.any_red() %}style="display: none"{% endif %}>
+            <tr data-domain="{{ site.domain }}" class="{{ site.css_classes() }}" {% if not site.any_red() %}style="display: none"{% endif %}>
                 <td><a href="https://{{ site.domain }}">{{ site.domain }}</a></td>
                 {% for target in targets %} {% if site.matches(target) %}
                 <td class="x">Jā</td>
@@ -99,7 +100,7 @@
             <h3>{{ date|format_date_lv|capitalize }}</h3>
             <ul class="changes">
             {% for event in day_events|sort %}
-            <li class="{{ event.site.category }}">
+            <li data-domain="{{ event.site.domain}}" class="{{ event.site.category }}">
                 {% if event.added %}
                     🔴 <a href="https://{{ event.site.domain }}">{{ event.site.domain }}</a>
                     sāk uzstādīt sīkdatni <strong>{{ event.cookie_name }}</strong>.
