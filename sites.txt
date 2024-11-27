@@ -157,6 +157,7 @@ gitana.lv,ecommerce
 glami.lv,ecommerce
 go3.lv
 gorod.lv,news
+gpspro.lv,ecommerce
 gramatas.lndb.lv
 greenmotors.lv,dealership
 gribu.lv
