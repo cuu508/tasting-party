@@ -79,7 +79,6 @@ csp.gov.lv,gov
 cv.lv
 cvk.lv,gov
 cvmarket.lv
-cvmarket.lv
 datamed.lv,medicine
 dateks.lv,ecommerce
 daugavpils.lv
@@ -110,7 +109,6 @@ e-euroaptieka.lv,pharmacy ecommerce
 e-klase.lv,edu_tool
 e-menessaptieka.lv,pharmacy ecommerce
 e-saulesaptieka.lv,pharmacy ecommerce
-e.csdd.lv
 e.csdd.lv,gov
 eapavi.lv,ecommerce
 edi.lv
@@ -183,12 +181,10 @@ inbox.lv
 indexo.lv,bank
 inserv.lv
 internetaptieka.lv,pharmacy
-internetaptieka.lv,pharmacy
 iport.lv,ecommerce
 ipsp.lv,bank
 ir.lv,news
 itap.lv
-itella.lv
 itella.lv
 izm.gov.lv,gov
 janisroze.lv,ecommerce
@@ -196,7 +192,6 @@ jauns.lv,news
 jelgava.lv
 jp.lv,medicine
 jpslimnica.lv,medicine
-jrslimnica.lv,medicine
 jrslimnica.lv,medicine
 jugland.lv
 jurmala.lv
