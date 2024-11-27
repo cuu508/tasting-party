@@ -20,6 +20,9 @@ TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*", "Gdynp", "__utm*"]
 # on several sites it seems to flip on and off frequently.
 CHANGES_TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*", "__utm*"]
 
+# If the website title contains any of these, we will skip loading cookies for it
+TITLE_ERRORS = ["Web server is down", "SSL handshake failed"]
+
 
 def read_chrome_cookiedb(path):
     with sqlite3.connect(path) as conn:
@@ -58,17 +61,19 @@ def make_driver(user_dir):
 
 
 def load_cookies(url):
+    print(f"[{ url }] Loading cookies")
     with tempfile.TemporaryDirectory() as user_dir:
         d = make_driver(user_dir)
         try:
             d.get(url)
         except TimeoutException:
-            print(f"Timeout while loading {url}, skipping.")
+            print(f"[{url}] Timeout, skipping.")
             return None
 
-        if "Web server is down" in d.title:
-            print(f"Hit Cloudflare error page while fetching {url}, skipping.")
-            return None
+        for s in TITLE_ERRORS:
+            if s in d.title:
+                print(f"[{url}] Title contains '{s}', skipping.")
+                return None
 
         time.sleep(3)
 
@@ -185,7 +190,6 @@ if __name__ == "__main__":
         # If they are not in the cache, load the website.
         cookielist = catalog.get_cookies(domain)
         if cookielist is None:
-            print(f"Loading cookies for { domain }")
             cookielist = load_cookies(f"https://{ domain }")
             if cookielist is not None:
                 catalog.set_cookies(domain, cookielist)
