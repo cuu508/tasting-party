@@ -1,4 +1,5 @@
 babel
 jinja2
+pydantic
 selenium
 selenium-stealth

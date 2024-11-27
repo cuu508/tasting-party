@@ -1,14 +1,17 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
 import json
 import sqlite3
 import tempfile
 import time
-from datetime import UTC, datetime
+from collections.abc import Iterable
+from datetime import UTC, date, datetime
 from pathlib import Path
 
 from babel.dates import format_date
 from jinja2 import Environment, FileSystemLoader
+from pydantic import BaseModel, TypeAdapter
 from selenium import webdriver
 from selenium.common.exceptions import MoveTargetOutOfBoundsException, TimeoutException
 from selenium.webdriver.common.actions.action_builder import ActionBuilder
@@ -24,7 +27,30 @@ CHANGES_TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*", "__utm*"]
 TITLE_ERRORS = ["Web server is down", "SSL handshake failed"]
 
 
-def read_chrome_cookiedb(path):
+class Cookie(BaseModel):
+    name: str
+    domain: str
+    httpOnly: int
+    expiry: int
+
+    def expiry_dt(self) -> date | None:
+        if self.expiry:
+            return datetime.fromtimestamp(self.expiry).date()
+        return None
+
+
+CookieList = TypeAdapter(list[Cookie])
+
+
+@dataclass
+class Event:
+    when: date
+    domain: str
+    cookie_name: str
+    added: bool
+
+
+def read_chrome_cookiedb(path: str) -> list[Cookie]:
     with sqlite3.connect(path) as conn:
         conn.row_factory = sqlite3.Row
         res = conn.execute(
@@ -36,10 +62,10 @@ def read_chrome_cookiedb(path):
             FROM cookies"""
         )
 
-        return [dict(row) for row in res.fetchall()]
+        return [Cookie(**row) for row in res.fetchall()]
 
 
-def make_driver(user_dir):
+def make_driver(user_dir: str) -> webdriver.Chrome:
     opts = webdriver.ChromeOptions()
     opts.add_argument("--headless=new")
     opts.add_argument("--window-size=2560,1440")
@@ -60,7 +86,7 @@ def make_driver(user_dir):
     return d
 
 
-def load_cookies(url):
+def load_cookies(url: str) -> list[Cookie] | None:
     print(f"[{ url }] Loading cookies")
     with tempfile.TemporaryDirectory() as user_dir:
         d = make_driver(user_dir)
@@ -109,25 +135,45 @@ def load_cookies(url):
         return read_chrome_cookiedb(user_dir + "/Default/Cookies")
 
 
-def cookie_match(target, cookies):
+def cookie_match(target: str, cookies: Iterable[str]) -> bool:
+    """Return True if a cookie name is present in `cookies`.
+
+    This function supports wildcard matching, but for trailing wildcards only
+    (_hj*, __utm*).
+
+    """
     if target.endswith("*"):
         target = target[:-1]
         return any(name.startswith(target) for name in cookies)
     return target in cookies
 
 
-def any_target_match(cookies):
+def any_target_match(cookies: Iterable[str]) -> bool:
+    """Return True if any cookie listed in `TARGETS` is present in `cookies`."""
     return any(cookie_match(target, cookies) for target in TARGETS)
 
 
+class Site:
+    def __init__(self, domain):
+        self.domain = domain
+
+    def cookies(self) -> list[Cookie] | None:
+        cookielist = catalog.get_cookies(self.domain)
+        if cookielist is None:
+            cookielist = load_cookies(f"https://{ self.domain }")
+            if cookielist is not None:
+                catalog.set_cookies(self.domain, cookielist)
+        return cookielist
+
+
 class Catalog:
-    def __init__(self):
+    def __init__(self) -> None:
         now = datetime.now(UTC)
         ts = now.strftime("%Y%m%d")
         self.today_path = Path("scans") / ts
         self.today_path.mkdir(parents=True, exist_ok=True)
 
-        self._domains = {}
+        self._domains: dict[str, str] = {}
         s = open("sites.txt").read()
         for line in s.split("\n"):
             if not line:
@@ -139,12 +185,15 @@ class Catalog:
 
             self._domains[parts[0]] = parts[1]
 
-    def get_cookies(self, domain):
+    def get_cookies(self, domain: str) -> list[Cookie] | None:
         path = self.today_path / domain.replace("/", "-")
         if path.exists():
-            return json.loads(path.open().read())
+            json_bytes = path.read_bytes()
+            return CookieList.validate_json(json_bytes)
 
-    def get_cookie_changes(self, domain):
+        return None
+
+    def get_events(self, domain: str) -> list[Event]:
         result, state = [], None
         for subdir in sorted(Path("scans").iterdir()):
             path = subdir / domain.replace("/", "-")
@@ -158,31 +207,35 @@ class Catalog:
             if state is not None:
                 d = datetime.strptime(subdir.name, "%Y%m%d").date()
                 for removed_cookie in state - new_state:
-                    result.append((d, domain, removed_cookie, False))
+                    result.append(Event(d, domain, removed_cookie, False))
                 for added_cookie in new_state - state:
                     if d.isoformat() < "2024-10-21" and added_cookie == "Gdynp":
                         # We changed data collection method here causing a bunch
                         # of false positives, filter them out-
                         pass
                     else:
-                        result.append((d, domain, added_cookie, True))
+                        result.append(Event(d, domain, added_cookie, True))
 
             state = new_state
 
         return result
 
-    def set_cookies(self, domain, cookielist):
+    def set_cookies(self, domain: str, cookielist: list[Cookie]) -> None:
         path = self.today_path / domain.replace("/", "-")
-        path.open("w").write(json.dumps(cookielist))
+        path.write_bytes(CookieList.dump_json(cookielist))
 
-    def domains(self):
+    def domains(self) -> Iterable[str]:
         return self._domains.keys()
 
-    def category(self, domain):
+    def sites(self):
+        for domain in self._domains.keys():
+            return Site(domain)
+
+    def category(self, domain: str) -> str:
         return self._domains[domain]
 
 
-def load_todays_cookies(catalog):
+def load_todays_cookies(catalog: Catalog) -> dict[str, dict[str, Cookie]]:
     sites = {}
     for domain in catalog.domains():
         # Load cookies from local cache (catalog).
@@ -195,25 +248,24 @@ def load_todays_cookies(catalog):
 
         sites[domain] = {}
         if cookielist:
-            cookielist.sort(key=lambda item: item["name"])
+            cookielist.sort(key=lambda item: item.name)
             for item in cookielist:
-                if item.get("expiry"):
-                    item["expiry_dt"] = datetime.fromtimestamp(item["expiry"]).date()
-                sites[domain][item["name"]] = item
+                sites[domain][item.name] = item
 
     return sites
 
 
-def load_events(catalog):
+def all_events(catalog: Catalog) -> list[Event]:
     events = []
     for domain in catalog.domains():
-        events.extend(catalog.get_cookie_changes(domain))
+        events.extend(catalog.get_events(domain))
 
-    events.sort(reverse=True)
     return events
 
 
-def generate_report(sites, events):
+def generate_report(
+    catalog: Catalog, sites: dict[str, dict[str, Cookie]], events: list[Event]
+) -> None:
     """Render sites/index.html"""
     site_classes = {}
     for domain, cookies in sites.items():
@@ -232,6 +284,7 @@ def generate_report(sites, events):
 
     tmpl = env.get_template("report_template.jinja2")
     ctx = {
+        "catalog": catalog,
         "now": datetime.now(UTC),
         "targets": TARGETS,
         "sites": sites,
@@ -249,5 +302,5 @@ def generate_report(sites, events):
 if __name__ == "__main__":
     catalog = Catalog()
     sites = load_todays_cookies(catalog)
-    events = load_events(catalog)
-    generate_report(sites, events)
+    events = all_events(catalog)
+    generate_report(catalog, sites, events)

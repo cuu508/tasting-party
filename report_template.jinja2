@@ -79,10 +79,10 @@
                             </tr>
                             {% for c in cookies.values() %}
                             <tr>
-                                <td>{{ c["name"] }}</td>
-                                <td>{{ c["domain"] }}</td>
-                                <td>{% if c["httpOnly"] %}jā{% endif %}</td>
-                                <td>{{ c["expiry_dt"] }}</td>
+                                <td>{{ c.name }}</td>
+                                <td>{{ c.domain }}</td>
+                                <td>{% if c.httpOnly %}jā{% endif %}</td>
+                                <td>{{ c.expiry_dt() }}</td>
                             </tr>
                             {% endfor %}
                         </table>
@@ -95,18 +95,18 @@
         </table>
 
         <h2>Izmaiņu vēsture</h2>
-        {% for date, item in events|groupby(0)|sort(reverse=True) %}
+        {% for date, day_events in events|groupby("when")|sort(reverse=True) %}
         <div class="changes">
             <h3>{{ date|format_date_lv|capitalize }}</h3>
             <ul class="changes">
-            {% for date, domain, cookie, added in item|sort %}
-            <li class="{{ domain|site_classes }}">
-                {% if added %}
-                    🔴 <a href="https://{{ domain }}">{{ domain }}</a>
-                    sāk uzstādīt sīkdatni <strong>{{ cookie }}</strong>.
+            {% for event in day_events|sort %}
+            <li class="{{ event.domain|site_classes }}">
+                {% if event.added %}
+                    🔴 <a href="https://{{ event.domain }}">{{ event.domain }}</a>
+                    sāk uzstādīt sīkdatni <strong>{{ event.cookie_name }}</strong>.
                 {% else %}
-                    🟢 <a href="https://{{ domain }}">{{ domain }}</a>
-                    pārstāj uzstādīt sīkdatni <strong>{{ cookie }}</strong>.
+                    🟢 <a href="https://{{ event.domain }}">{{ event.domain }}</a>
+                    pārstāj uzstādīt sīkdatni <strong>{{ event.cookie_name }}</strong>.
                 {% endif %}
                 </li>
             {% endfor %}
