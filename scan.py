@@ -156,7 +156,9 @@ def cookie_match(target: str, cookies: Iterable[str]) -> bool:
 
 
 class Site:
-    def __init__(self, domain, category, cookies):
+    def __init__(
+        self, domain: str, category: str, cookies: list[Cookie] | None
+    ) -> None:
         self.domain = domain
         self.category = category
         self.cookies = cookies
@@ -164,13 +166,13 @@ class Site:
         if self.cookies:
             self.cookie_names = [cookie.name for cookie in self.cookies]
 
-    def any_red(self):
+    def any_red(self) -> bool:
         return any(cookie_match(target, self.cookie_names) for target in TARGETS)
 
-    def matches(self, target):
+    def matches(self, target: str) -> bool:
         return cookie_match(target, self.cookie_names)
 
-    def css_classes(self):
+    def css_classes(self) -> str:
         parts = ["site"]
         if self.any_red():
             parts.append("red")
@@ -222,7 +224,8 @@ class Catalog:
         path.write_bytes(CookieList.dump_json(cookielist))
 
     def get_events(self, site: Site) -> list[Event]:
-        result, state = [], None
+        result: list[Event] = []
+        state = None
         for subdir in sorted(Path("scans").iterdir()):
             path = subdir / site.domain.replace("/", "-")
             if not path.exists():
