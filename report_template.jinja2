@@ -82,7 +82,7 @@
                                 <td>{{ cookie.name }}</td>
                                 <td>{{ cookie.domain }}</td>
                                 <td>{% if cookie.httpOnly %}jā{% endif %}</td>
-                                <td>{{ cookie.expiry_dt() }}</td>
+                                <td>{{ cookie.expiry_dt()|default('–', true) }}</td>
                             </tr>
                             {% endfor %}
                         </table>
