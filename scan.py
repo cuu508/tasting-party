@@ -97,7 +97,7 @@ def load_cookies(url):
         # 2. Scroll to the bottom of the page
         scrollh = d.execute_script("return document.body.scrollHeight")
         webdriver.ActionChains(d).scroll_by_amount(0, scrollh).perform()
-        time.sleep(3)
+        time.sleep(0.5)
 
         # 3. Scroll to the top of the page
         webdriver.ActionChains(d).scroll_by_amount(0, -scrollh).perform()
@@ -182,8 +182,7 @@ class Catalog:
         return self._domains[domain]
 
 
-if __name__ == "__main__":
-    catalog = Catalog()
+def load_todays_cookies(catalog):
     sites = {}
     for domain in catalog.domains():
         # Load cookies from local cache (catalog).
@@ -202,12 +201,20 @@ if __name__ == "__main__":
                     item["expiry_dt"] = datetime.fromtimestamp(item["expiry"]).date()
                 sites[domain][item["name"]] = item
 
+    return sites
+
+
+def load_events(catalog):
     events = []
     for domain in catalog.domains():
         events.extend(catalog.get_cookie_changes(domain))
 
     events.sort(reverse=True)
+    return events
 
+
+def generate_report(sites, events):
+    """Render sites/index.html"""
     site_classes = {}
     for domain, cookies in sites.items():
         parts = ["site"]
@@ -217,7 +224,6 @@ if __name__ == "__main__":
             parts.append(category)
         site_classes[domain] = " ".join(parts)
 
-    # Render result
     env = Environment(loader=FileSystemLoader("."))
     env.tests["matching"] = cookie_match
     env.tests["matching_any"] = any_target_match
@@ -239,6 +245,9 @@ if __name__ == "__main__":
     with open("site/index.html", "w") as f:
         f.write(html)
 
-    now = ctx["now"]
-    with open(f"site/{now:%Y%m%d}.html", "w") as f:
-        f.write(html)
+
+if __name__ == "__main__":
+    catalog = Catalog()
+    sites = load_todays_cookies(catalog)
+    events = load_events(catalog)
+    generate_report(sites, events)
