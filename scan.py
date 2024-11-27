@@ -46,8 +46,7 @@ CookieList = TypeAdapter(list[Cookie])
 @dataclass
 class Event:
     when: date
-    domain: str
-    category: str
+    site: Site
     cookie_name: str
     added: bool
 
@@ -241,18 +240,14 @@ class Catalog:
             if state is not None:
                 d = datetime.strptime(subdir.name, "%Y%m%d").date()
                 for removed_cookie in state - new_state:
-                    result.append(
-                        Event(d, site.domain, site.category, removed_cookie, False)
-                    )
+                    result.append(Event(d, site, removed_cookie, False))
                 for added_cookie in new_state - state:
                     if d.isoformat() < "2024-10-21" and added_cookie == "Gdynp":
                         # We changed data collection method here causing a bunch
                         # of false positives, filter them out-
                         pass
                     else:
-                        result.append(
-                            Event(d, site.domain, site.category, added_cookie, True)
-                        )
+                        result.append(Event(d, site, added_cookie, True))
 
             state = new_state
 

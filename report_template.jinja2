@@ -99,12 +99,12 @@
             <h3>{{ date|format_date_lv|capitalize }}</h3>
             <ul class="changes">
             {% for event in day_events|sort %}
-            <li class="{{ event.category }}">
+            <li class="{{ event.site.category }}">
                 {% if event.added %}
-                    🔴 <a href="https://{{ event.domain }}">{{ event.domain }}</a>
+                    🔴 <a href="https://{{ event.site.domain }}">{{ event.site.domain }}</a>
                     sāk uzstādīt sīkdatni <strong>{{ event.cookie_name }}</strong>.
                 {% else %}
-                    🟢 <a href="https://{{ event.domain }}">{{ event.domain }}</a>
+                    🟢 <a href="https://{{ event.site.domain }}">{{ event.site.domain }}</a>
                     pārstāj uzstādīt sīkdatni <strong>{{ event.cookie_name }}</strong>.
                 {% endif %}
                 </li>
