@@ -28,7 +28,7 @@
                 <td id="filtering" colspan="9">
                     <h2>
                         Filtrēšana
-                        <small>(<span id="numVisible">{{ num_visible }}</span> no {{ sites|length }})</small>
+                        <small>(<span id="numVisible">{{ num_visible }}</span> no {{ catalog.sites|length }})</small>
                     </h2>
                     <label><input id="showRedOnly" type="checkbox" checked />Rādīt tikai, ja ir sarkanas rūtiņas</label>
                     <select id="category">
@@ -55,20 +55,19 @@
                 {% endfor %}
                 <th>Visas sīkdatnes</th>
             </tr>
-            {% for domain, cookies in sites.items() %}
-            <tr class="{{ domain|site_classes }}" {% if cookies is not matching_any%}style="display: none"{% endif%}>
-                <td><a href="https://{{ domain }}">{{ domain }}</a></td>
-                {% for target in targets%} {% if target is matching cookies %}
+            {% for site in catalog.sites %}
+            <tr class="{{ site.css_classes() }}" {% if not site.any_red() %}style="display: none"{% endif %}>
+                <td><a href="https://{{ site.domain }}">{{ site.domain }}</a></td>
+                {% for target in targets %} {% if site.matches(target) %}
                 <td class="x">Jā</td>
                 {% else %}
                 <td></td>
                 {% endif %} {% endfor %}
                 <td>
-                    {% if cookies|length %}
+                    {% if site.cookies|length %}
                     <details>
                         <summary>
-                            {{ cookies|length }} sīkdatne{% if cookies|length >
-                            1 %}s{% endif%}
+                            {{ site.cookies|length }} sīkdatne{% if site.cookies|length > 1 %}s{% endif%}
                         </summary>
                         <table>
                             <tr>
@@ -77,12 +76,12 @@
                                 <th>HttpOnly</th>
                                 <th>Termiņš</th>
                             </tr>
-                            {% for c in cookies.values() %}
+                            {% for cookie in site.cookies %}
                             <tr>
-                                <td>{{ c.name }}</td>
-                                <td>{{ c.domain }}</td>
-                                <td>{% if c.httpOnly %}jā{% endif %}</td>
-                                <td>{{ c.expiry_dt() }}</td>
+                                <td>{{ cookie.name }}</td>
+                                <td>{{ cookie.domain }}</td>
+                                <td>{% if cookie.httpOnly %}jā{% endif %}</td>
+                                <td>{{ cookie.expiry_dt() }}</td>
                             </tr>
                             {% endfor %}
                         </table>
@@ -95,12 +94,12 @@
         </table>
 
         <h2>Izmaiņu vēsture</h2>
-        {% for date, day_events in events|groupby("when")|sort(reverse=True) %}
+        {% for date, day_events in catalog.get_all_events()|groupby("when")|sort(reverse=True) %}
         <div class="changes">
             <h3>{{ date|format_date_lv|capitalize }}</h3>
             <ul class="changes">
             {% for event in day_events|sort %}
-            <li class="{{ event.domain|site_classes }}">
+            <li class="{{ event.category }}">
                 {% if event.added %}
                     🔴 <a href="https://{{ event.domain }}">{{ event.domain }}</a>
                     sāk uzstādīt sīkdatni <strong>{{ event.cookie_name }}</strong>.

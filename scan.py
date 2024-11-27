@@ -16,6 +16,7 @@ from selenium import webdriver
 from selenium.common.exceptions import MoveTargetOutOfBoundsException, TimeoutException
 from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from selenium_stealth import stealth
+from urllib3.exceptions import ReadTimeoutError
 
 # The cookies we show in the report table
 TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*", "Gdynp", "__utm*"]
@@ -46,8 +47,12 @@ CookieList = TypeAdapter(list[Cookie])
 class Event:
     when: date
     domain: str
+    category: str
     cookie_name: str
     added: bool
+
+    def __lt__(self, other: Event) -> bool:
+        return self.when < other.when
 
 
 def read_chrome_cookiedb(path: str) -> list[Cookie]:
@@ -94,6 +99,9 @@ def load_cookies(url: str) -> list[Cookie] | None:
             d.get(url)
         except TimeoutException:
             print(f"[{url}] Timeout, skipping.")
+            return None
+        except ReadTimeoutError:
+            print(f"[{url}] urllib3 timeout, skipping.")
             return None
 
         for s in TITLE_ERRORS:
@@ -154,16 +162,28 @@ def any_target_match(cookies: Iterable[str]) -> bool:
 
 
 class Site:
-    def __init__(self, domain):
+    def __init__(self, domain, category, cookies):
         self.domain = domain
+        self.category = category
+        self.cookies = cookies
+        self.cookie_names = []
+        if self.cookies:
+            self.cookie_names = [cookie.name for cookie in self.cookies]
 
-    def cookies(self) -> list[Cookie] | None:
-        cookielist = catalog.get_cookies(self.domain)
-        if cookielist is None:
-            cookielist = load_cookies(f"https://{ self.domain }")
-            if cookielist is not None:
-                catalog.set_cookies(self.domain, cookielist)
-        return cookielist
+    def any_red(self):
+        return any(cookie_match(target, self.cookie_names) for target in TARGETS)
+
+    def matches(self, target):
+        return cookie_match(target, self.cookie_names)
+
+    def css_classes(self):
+        parts = ["site"]
+        if self.any_red():
+            parts.append("red")
+        if self.category:
+            parts.append(self.category)
+
+        return " ".join(parts)
 
 
 class Catalog:
@@ -173,8 +193,9 @@ class Catalog:
         self.today_path = Path("scans") / ts
         self.today_path.mkdir(parents=True, exist_ok=True)
 
-        self._domains: dict[str, str] = {}
+        self.sites: list[Site] = []
         s = open("sites.txt").read()
+        prev_domain = None
         for line in s.split("\n"):
             if not line:
                 continue
@@ -183,7 +204,16 @@ class Catalog:
             if len(parts) == 1:
                 parts.append("null")
 
-            self._domains[parts[0]] = parts[1]
+            domain, category = parts[0], parts[1]
+            assert domain != prev_domain, f"Duplicate: { domain }"
+            prev_domain = domain
+            cookielist = self.get_cookies(domain)
+            if cookielist is None:
+                cookielist = load_cookies(f"https://{ domain }")
+                if cookielist is not None:
+                    self.set_cookies(domain, cookielist)
+
+            self.sites.append(Site(domain, category, cookielist))
 
     def get_cookies(self, domain: str) -> list[Cookie] | None:
         path = self.today_path / domain.replace("/", "-")
@@ -193,10 +223,14 @@ class Catalog:
 
         return None
 
-    def get_events(self, domain: str) -> list[Event]:
+    def set_cookies(self, domain: str, cookielist: list[Cookie]) -> None:
+        path = self.today_path / domain.replace("/", "-")
+        path.write_bytes(CookieList.dump_json(cookielist))
+
+    def get_events(self, site: Site) -> list[Event]:
         result, state = [], None
         for subdir in sorted(Path("scans").iterdir()):
-            path = subdir / domain.replace("/", "-")
+            path = subdir / site.domain.replace("/", "-")
             if not path.exists():
                 continue
 
@@ -207,89 +241,45 @@ class Catalog:
             if state is not None:
                 d = datetime.strptime(subdir.name, "%Y%m%d").date()
                 for removed_cookie in state - new_state:
-                    result.append(Event(d, domain, removed_cookie, False))
+                    result.append(
+                        Event(d, site.domain, site.category, removed_cookie, False)
+                    )
                 for added_cookie in new_state - state:
                     if d.isoformat() < "2024-10-21" and added_cookie == "Gdynp":
                         # We changed data collection method here causing a bunch
                         # of false positives, filter them out-
                         pass
                     else:
-                        result.append(Event(d, domain, added_cookie, True))
+                        result.append(
+                            Event(d, site.domain, site.category, added_cookie, True)
+                        )
 
             state = new_state
 
         return result
 
-    def set_cookies(self, domain: str, cookielist: list[Cookie]) -> None:
-        path = self.today_path / domain.replace("/", "-")
-        path.write_bytes(CookieList.dump_json(cookielist))
+    def get_all_events(self) -> list[Event]:
+        events = []
+        for site in self.sites:
+            events.extend(self.get_events(site))
 
-    def domains(self) -> Iterable[str]:
-        return self._domains.keys()
-
-    def sites(self):
-        for domain in self._domains.keys():
-            return Site(domain)
-
-    def category(self, domain: str) -> str:
-        return self._domains[domain]
+        return events
 
 
-def load_todays_cookies(catalog: Catalog) -> dict[str, dict[str, Cookie]]:
-    sites = {}
-    for domain in catalog.domains():
-        # Load cookies from local cache (catalog).
-        # If they are not in the cache, load the website.
-        cookielist = catalog.get_cookies(domain)
-        if cookielist is None:
-            cookielist = load_cookies(f"https://{ domain }")
-            if cookielist is not None:
-                catalog.set_cookies(domain, cookielist)
-
-        sites[domain] = {}
-        if cookielist:
-            cookielist.sort(key=lambda item: item.name)
-            for item in cookielist:
-                sites[domain][item.name] = item
-
-    return sites
-
-
-def all_events(catalog: Catalog) -> list[Event]:
-    events = []
-    for domain in catalog.domains():
-        events.extend(catalog.get_events(domain))
-
-    return events
-
-
-def generate_report(
-    catalog: Catalog, sites: dict[str, dict[str, Cookie]], events: list[Event]
-) -> None:
+def generate_report(catalog: Catalog) -> None:
     """Render sites/index.html"""
-    site_classes = {}
-    for domain, cookies in sites.items():
-        parts = ["site"]
-        if any_target_match(cookies):
-            parts.append("red")
-        if category := catalog.category(domain):
-            parts.append(category)
-        site_classes[domain] = " ".join(parts)
 
     env = Environment(loader=FileSystemLoader("."))
-    env.tests["matching"] = cookie_match
-    env.tests["matching_any"] = any_target_match
     env.filters["format_date_lv"] = lambda d: format_date(d, "EEEE, d. MMMM", "lv_LV")
-    env.filters["site_classes"] = lambda domain: site_classes[domain]
 
     tmpl = env.get_template("report_template.jinja2")
+    num_visible = len([True for site in catalog.sites if site.any_red()])
+
     ctx = {
         "catalog": catalog,
         "now": datetime.now(UTC),
         "targets": TARGETS,
-        "sites": sites,
-        "events": events,
-        "num_visible": sum(any_target_match(cookies) for cookies in sites.values()),
+        "num_visible": num_visible,
     }
 
     html = tmpl.render(**ctx)
@@ -301,6 +291,4 @@ def generate_report(
 
 if __name__ == "__main__":
     catalog = Catalog()
-    sites = load_todays_cookies(catalog)
-    events = all_events(catalog)
-    generate_report(catalog, sites, events)
+    generate_report(catalog)
