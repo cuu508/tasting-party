@@ -65,6 +65,11 @@ def load_cookies(url):
         except TimeoutException:
             print(f"Timeout while loading {url}, skipping.")
             return None
+
+        if "Web server is down" in d.title:
+            print(f"Hit Cloudflare error page while fetching {url}, skipping.")
+            return None
+
         time.sleep(3)
 
         # Now prod the page to cause more cookies to load:
