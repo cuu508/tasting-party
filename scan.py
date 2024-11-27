@@ -79,8 +79,8 @@ def load_cookies(url):
 
         # Now prod the page to cause more cookies to load:
         # 1. Move mouse to all corners of the sceeen
-        width = d.execute_script("return document.documentElement.clientWidth")
-        height = d.execute_script("return document.documentElement.clientHeight")
+        width = d.execute_script("return window.innerWidth")
+        height = d.execute_script("return window.innerHeight")
         for x, y in [
             (10, 10),
             (10, height - 10),
