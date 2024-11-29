@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+from contextlib import contextmanager
 from dataclasses import dataclass
 import json
+from random import random, randint
 import sqlite3
 import tempfile
 import time
@@ -13,8 +15,8 @@ from babel.dates import format_date
 from jinja2 import Environment, FileSystemLoader
 from pydantic import BaseModel, TypeAdapter
 from selenium import webdriver
-from selenium.common.exceptions import MoveTargetOutOfBoundsException, TimeoutException
-from selenium.webdriver.common.actions.action_builder import ActionBuilder
+from selenium.common.exceptions import TimeoutException, WebDriverException
+from selenium.webdriver.common.keys import Keys
 from selenium_stealth import stealth
 from urllib3.exceptions import ReadTimeoutError
 
@@ -69,7 +71,8 @@ def read_chrome_cookiedb(path: str) -> list[Cookie]:
         return [Cookie(**row) for row in res.fetchall()]
 
 
-def make_driver(user_dir: str) -> webdriver.Chrome:
+@contextmanager
+def driver(user_dir: str):
     opts = webdriver.ChromeOptions()
     opts.add_argument("--headless=new")
     opts.add_argument("--window-size=2560,1440")
@@ -87,13 +90,17 @@ def make_driver(user_dir: str) -> webdriver.Chrome:
         renderer="Intel Iris OpenGL Engine",
         fix_hairline=True,
     )
-    return d
+    try:
+        yield d
+    finally:
+        d.quit()
 
 
 def load_cookies(url: str) -> list[Cookie] | None:
     print(f"[{ url }] Loading cookies")
-    with tempfile.TemporaryDirectory() as user_dir:
-        d = make_driver(user_dir)
+    with tempfile.TemporaryDirectory() as user_dir, driver(user_dir) as d:
+        d.set_page_load_timeout(10)
+
         try:
             d.get(url)
         except TimeoutException:
@@ -101,6 +108,9 @@ def load_cookies(url: str) -> list[Cookie] | None:
             return None
         except ReadTimeoutError:
             print(f"[{url}] urllib3 timeout, skipping.")
+            return None
+        except WebDriverException as e:
+            print(f"[{url}] {e.msg}, skipping.")
             return None
 
         for s in TITLE_ERRORS:
@@ -111,31 +121,35 @@ def load_cookies(url: str) -> list[Cookie] | None:
         time.sleep(3)
 
         # Now prod the page to cause more cookies to load:
-        # 1. Move mouse to all corners of the sceeen
         width = d.execute_script("return window.innerWidth")
         height = d.execute_script("return window.innerHeight")
-        for x, y in [
-            (10, 10),
-            (10, height - 10),
-            (width - 10, 10),
-            (width - 10, height - 10),
-        ]:
-            action = ActionBuilder(d)
-            action.pointer_action.move_to_location(x, y)
-            try:
-                action.perform()
-            except MoveTargetOutOfBoundsException as e:
-                print("Element is out of bounds: ", e)
-
-        # 2. Scroll to the bottom of the page
         scrollh = d.execute_script("return document.body.scrollHeight")
-        webdriver.ActionChains(d).scroll_by_amount(0, scrollh).perform()
-        time.sleep(0.5)
+        chain = webdriver.ActionChains(d)
 
-        # 3. Scroll to the top of the page
-        webdriver.ActionChains(d).scroll_by_amount(0, -scrollh).perform()
-        time.sleep(3)
-        d.quit()
+        # 1. Center mouse
+        x, y = int(width / 2), int(height / 2)
+        chain.move_by_offset(x, y).pause(0.1)
+
+        # 2. Jiggle mouse
+        for i in range(0, 10):
+            dx, dy = randint(-50, 50), randint(-50, 50)
+            if 0 < x + dx < width and 0 < y + dy < height:
+                x += dx
+                y += dy
+                chain.move_by_offset(dx, dy).pause(random() * 0.2)
+
+        # 3. Scroll to the bottom of the page
+        chain.scroll_by_amount(0, scrollh).pause(0.1)
+
+        # 4. Scroll to the top of the page
+        chain.scroll_by_amount(0, -scrollh).pause(0.1)
+
+        # 5. Send "End" and "Home" keys
+        chain.send_keys(Keys.END).pause(0.1)
+        chain.pause(0.1)
+        chain.send_keys(Keys.HOME).pause(0.1)
+
+        chain.pause(3).perform()
 
         # d.get_cookies() does not return httpOnly cookies, so read them from
         # chromium's sqlite database:
@@ -283,5 +297,12 @@ def generate_report(catalog: Catalog) -> None:
 
 
 if __name__ == "__main__":
+    # Load cookies for all sites.
     catalog = Catalog()
+
+    # If any site fails to load, retry:
+    if any(site.cookies is None for site in catalog.sites):
+        print("Now retrying failed page loads:")
+        catalog = Catalog()
+
     generate_report(catalog)
