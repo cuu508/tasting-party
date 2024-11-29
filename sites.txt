@@ -532,7 +532,6 @@ vestnesis.lv,gov
 via-una.lv,medicine
 viaa.gov.lv,gov
 viada.lv
-viada.lv
 vid.gov.lv,gov
 vidaxl.lv,ecommerce
 vidzemesslimnica.lv,medicine
