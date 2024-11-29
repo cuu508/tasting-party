@@ -71,8 +71,7 @@ def read_chrome_cookiedb(path: str) -> list[Cookie]:
         return [Cookie(**row) for row in res.fetchall()]
 
 
-@contextmanager
-def driver(user_dir: str):
+def get_driver(user_dir: str):
     opts = webdriver.ChromeOptions()
     opts.add_argument("--headless=new")
     opts.add_argument("--window-size=2560,1440")
@@ -90,32 +89,34 @@ def driver(user_dir: str):
         renderer="Intel Iris OpenGL Engine",
         fix_hairline=True,
     )
-    try:
-        yield d
-    finally:
-        d.quit()
+    return d
 
 
 def load_cookies(url: str) -> list[Cookie] | None:
     print(f"[{ url }] Loading cookies")
-    with tempfile.TemporaryDirectory() as user_dir, driver(user_dir) as d:
+    with tempfile.TemporaryDirectory() as user_dir:
+        d = get_driver(user_dir)
         d.set_page_load_timeout(10)
 
         try:
             d.get(url)
         except TimeoutException:
             print(f"[{url}] Timeout, skipping.")
+            d.quit()
             return None
         except ReadTimeoutError:
             print(f"[{url}] urllib3 timeout, skipping.")
+            d.quit()
             return None
         except WebDriverException as e:
             print(f"[{url}] {e.msg}, skipping.")
+            d.quit()
             return None
 
         for s in TITLE_ERRORS:
             if s in d.title:
                 print(f"[{url}] Title contains '{s}', skipping.")
+                d.quit()
                 return None
 
         time.sleep(3)
@@ -150,6 +151,7 @@ def load_cookies(url: str) -> list[Cookie] | None:
         chain.send_keys(Keys.HOME).pause(0.1)
 
         chain.pause(3).perform()
+        d.quit()
 
         # d.get_cookies() does not return httpOnly cookies, so read them from
         # chromium's sqlite database:
