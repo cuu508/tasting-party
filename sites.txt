@@ -203,7 +203,7 @@ ir.lv,news
 itap.lv
 itella.lv
 izm.gov.lv,gov
-janisroze.lv,ecommerce
+janisroze.lv,ecommerce books
 jauns.lv,news
 jelgava.lv
 jp.lv,medicine
