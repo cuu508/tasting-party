@@ -29,6 +29,11 @@ td.x {
     background: #eee;
 }
 
+div#filtering {
+    padding: 0.5em;
+    max-width: 900px;
+}
+
 #filtering h2,
 #filtering label,
 #filtering select,

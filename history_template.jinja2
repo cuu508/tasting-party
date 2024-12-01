@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>
+            Atskaite: sīkdatnes, ko uzstāda pirms lietotāja atļaujas saņemšanas
+        </title>
+    </head>
+    <body>
+        <style type="text/css">{% include "assets/style.css" %}</style>
+
+        <div id="filtering">
+            <h2>Filtrēšana</h2>
+            <select id="category">
+                <option value="">Jebkura kategorija</option>
+                <option value="pharmacy">Aptiekas</option>
+                <option value="dealership">Autosaloni</option>
+                <option value="gambling">Azartspēles</option>
+                <option value="bank">Bankas</option>
+                <option value="ecommerce">Interneta veikali</option>
+                <option value="books">Izdevniecība</option>
+                <option value="edu_tool">Mācību līdzekļi, mācību platformas</option>
+                <option value="medicine">Slimnīcas, laboratorijas, veselības dati</option>
+                <option value="gov">Ministriju, valsts pārvaldes iestāžu mājaslapas</option>
+                <option value="radio_tv">Radio, TV</option>
+                <option value="education">Skolas, augstskolas</option>
+                <option value="news">Ziņu portāli</option>
+                <option value="null">Bez kategorijas</option>
+            </select>
+            <input id="search" type="text" placeholder="Meklē pēc adreses..." />
+        </div>
+
+        <h2>Izmaiņu vēsture</h2>
+        {% for date, day_events in catalog.get_all_events()|groupby("when")|sort(reverse=True) %}
+        <div class="changes">
+            <h3>{{ date|format_date_lv|capitalize }}</h3>
+            <ul class="changes">
+            {% for event in day_events|sort %}
+            <li data-domain="{{ event.site.domain}}" class="{{ event.site.category }}">
+                {% if event.added %}
+                    🔴 <a href="https://{{ event.site.domain }}">{{ event.site.domain }}</a>
+                    sāk uzstādīt sīkdatni <strong>{{ event.cookie_name }}</strong>.
+                {% else %}
+                    🟢 <a href="https://{{ event.site.domain }}">{{ event.site.domain }}</a>
+                    pārstāj uzstādīt sīkdatni <strong>{{ event.cookie_name }}</strong>.
+                {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+        <p id="changesEmpty" style="display: none">Nav ierakstu</p>
+
+        <footer>
+            Sagatavots <strong>{{ now.date() }}</strong>, izmantojot
+            <a href="https://github.com/cuu508/tasting-party">tasting-party</a>.
+        </footer>
+        <script>{% include "assets/history_filtering.js" %}</script>
+    </body>
+</html>

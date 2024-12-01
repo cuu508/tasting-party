@@ -278,7 +278,6 @@ def generate_report(catalog: Catalog) -> None:
     env = Environment(loader=FileSystemLoader("."))
     env.filters["format_date_lv"] = lambda d: format_date(d, "EEEE, d. MMMM", "lv_LV")
 
-    tmpl = env.get_template("report_template.jinja2")
     num_visible = len([True for site in catalog.sites if site.any_red()])
 
     ctx = {
@@ -288,11 +287,16 @@ def generate_report(catalog: Catalog) -> None:
         "num_visible": num_visible,
     }
 
-    html = tmpl.render(**ctx)
     site = Path("site")
     site.mkdir(exist_ok=True)
+
+    tmpl = env.get_template("report_template.jinja2")
     with open("site/index.html", "w") as f:
-        f.write(html)
+        f.write(tmpl.render(**ctx))
+
+    history_tmpl = env.get_template("history_template.jinja2")
+    with open("site/history.html", "w") as f:
+        f.write(history_tmpl.render(**ctx))
 
 
 if __name__ == "__main__":

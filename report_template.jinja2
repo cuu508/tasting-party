@@ -97,6 +97,7 @@
 
         <h2>Izmaiņu vēsture</h2>
         {% for date, day_events in catalog.get_all_events()|groupby("when")|sort(reverse=True) %}
+        {% if loop.index <= 7 %}
         <div class="changes">
             <h3>{{ date|format_date_lv|capitalize }}</h3>
             <ul class="changes">
@@ -113,8 +114,10 @@
             {% endfor %}
             </ul>
         </div>
+        {% endif %}
         {% endfor %}
         <p id="changesEmpty" style="display: none">Nav ierakstu</p>
+        <p><a href="history.html">Vairāk vēstures</a></p>
 
         <h2>Sīkdatņu nosaukumu atšifrējumi</h2>
         <table>
