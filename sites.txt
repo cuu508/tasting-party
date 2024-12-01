@@ -35,6 +35,7 @@ autotransports.lv
 avotsabc.lv,books
 ba.lv,education
 babystore.lv,ecommerce
+bac.gov.lv,gov
 balta.lv
 balticdata.lv,ecommerce
 balticguru.eu,ecommerce
