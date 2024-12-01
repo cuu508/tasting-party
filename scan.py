@@ -96,13 +96,11 @@ def load_cookies(url: str) -> list[Cookie] | None:
     print(f"[{ url }] Loading cookies")
     with tempfile.TemporaryDirectory() as user_dir:
         d = get_driver(user_dir)
-
+        d.set_page_load_timeout(30)
         try:
             d.get(url)
         except TimeoutException:
-            print(f"[{url}] Timeout, skipping.")
-            d.quit()
-            return None
+            print(f"[{url}] Page load timed out, cookies may still be loading")
         except ReadTimeoutError:
             print(f"[{url}] urllib3 timeout, skipping.")
             d.quit()
