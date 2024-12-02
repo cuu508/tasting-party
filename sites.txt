@@ -483,6 +483,7 @@ swedbank.lv,bank
 synottip.lv,gambling
 tavadruka.lv
 tavex.lv
+tavidraugi.lv
 tele2.lv,mobile
 telenet.lv
 tera.lv,ecommerce
@@ -559,7 +560,6 @@ xtv.lv,news,radio_tv
 yandex.lv
 zalando.lv,ecommerce
 zauers.lv,ecommerce
-zeltaabele.lv,books
 ziedot.lv
 ziemelkurzemesslimnica.lv,medicine
 zinatnesgramatas.lv,books
