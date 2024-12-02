@@ -266,7 +266,7 @@ liaa.gov.lv,gov
 lidl.lv
 lido.lv
 lieliskadavana.lv
-lielsunmazs.lv,books
+lielsmazs.lv,books
 lielvards.lv
 liepajasslimnica.lv,medicine
 liepajniekiem.lv
