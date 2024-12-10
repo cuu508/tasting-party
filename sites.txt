@@ -8,19 +8,23 @@
 abone.lv
 absolvents.lv,edu_tool
 act.lv,ecommerce
+adazunovads.lv
 adbaltic.lv,ecommerce
 adbox.lv
 aio.lv,ecommerce
+akropolealfa.lv
 akvaparks.lv
 aluksnespoliklinika.lv,medicine
 aluksnesslimnica.lv,medicine
 andelemandele.lv,ecommerce
 anete.lv,ecommerce
+apelsins.com
 apgads.lu.lv,books
 apollo.lv,news
 apollokino.lv
 apotheka.lv,pharmacy ecommerce
 aptieka1.lv,pharmacy
+arcada.lv
 armino.lv,ecommerce edu_tools
 arsts.lv,news
 aslimnica.lv,medicine
@@ -46,6 +50,7 @@ barbora.lv,ecommerce
 bauskasslimnica.lv,medicine
 bb.lv,news
 benu.lv,pharmacy ecommerce
+bernu-pasaule.lv
 betsafe.lv,gambling
 bezrindas.lv
 bfs.lv,ecommerce
@@ -105,6 +110,8 @@ discover.lv,ecommerce
 dobele.lv
 dobelesslimnica.lv,medicine
 dod.pieci.lv
+dole.lv
+domina-shopping.lv
 douglas.lv,ecommerce
 dpd.lv
 dpns.gov.lv,medicine
@@ -143,6 +150,7 @@ ernis.lv
 esto.eu
 euroaptieka.lv,pharmacy
 euronics.lv,ecommerce
+europark.lv
 eveseliba.gov.lv,gov
 eveselibaspunkts.lv,medicine
 expressshop.lv,ecommerce
@@ -158,6 +166,8 @@ forumauto.lv,dealership
 forumcinemas.lv
 fotoprint.lv
 gabi.lv,ecommerce
+galerijacentrs.lv
+galleriariga.lv
 gameroom.lv,ecommerce
 ganbei.lv
 gandrs.lv,ecommerce
@@ -270,6 +280,7 @@ lielsmazs.lv,books
 lielvards.lv
 liepajasslimnica.lv,medicine
 liepajniekiem.lv
+liiba.lv
 likta.lv
 likumi.lv,gov
 linuxcentrs.lv
@@ -342,6 +353,7 @@ mnogoknig.lv,ecommerce
 mobilly.lv
 mod.gov.lv,gov
 modivo.lv,ecommerce
+mols.lv
 morex.lv,ecommerce
 motofavorits.lv,dealership
 mozello.lv
@@ -371,6 +383,7 @@ octas.lv
 officeshop.lv,ecommerce
 ogresslimnica.lv,medicine
 oho.lv
+olimpia.lv
 olybet.lv,gambling
 omniva.lv
 online.depo.lv,ecommerce
@@ -382,8 +395,10 @@ open.lv
 opera.lv
 optibet.lv,gambling
 oreol.eu,ecommerce
+origo.lv
 pafbet.lv,gambling
 paligsmacibas.lv,edu_tool
+parkexpert.lv
 pasts.lv
 periodika.lv
 petergailis.lv,books
@@ -425,6 +440,7 @@ rietumu.com,bank
 riga-airport.com
 riga.lv
 rigaiff.lv
+rigaplaza.lv
 rigaslaiks.lv
 rigassatiksme.lv
 rimi.lv
@@ -438,6 +454,7 @@ rtu.lv,education
 sabiedriskaisautobuss.lv
 sadalestikls.lv
 saeima.lv,gov
+saga.lv
 santa.lv,news
 satori.lv,news
 seb.lv,bank
@@ -453,6 +470,7 @@ sizeer.lv,ecommerce
 skandimotors.lv,dealership
 skola2030.lv,gov
 skolo.lv,edu_tool
+skyandmore.lv
 slageris.lv,radio_tv
 slimnica.daugavpils.lv,medicine
 slimnica.lv,medicine
@@ -476,6 +494,7 @@ starfm.tv3.lv,radio_tv
 staroriga.lv
 stat.gov.lv,gov
 stenaline.lv
+stockmann.lv
 stradini.lv,medicine
 straujupite.lv
 strencupns.lv,medicine
@@ -484,6 +503,9 @@ synottip.lv,gambling
 tavadruka.lv
 tavex.lv
 tavidraugi.lv
+tcaugusts.lv
+tcdamme.lv
+teikaplaza.lv
 tele2.lv,mobile
 telenet.lv
 tera.lv,ecommerce
@@ -514,6 +536,7 @@ ur.gov.lv,gov
 uzdevumi.lv,edu_tool
 va.lv,education
 vakuums.lv,ecommerce
+valleta.lv
 valmierasteatris.lv
 valmieraszinas.lv,news
 valmiermuiza.lv,ecommerce
@@ -565,6 +588,7 @@ ziemelkurzemesslimnica.lv,medicine
 zinatnesgramatas.lv,books
 zl.lv
 zo.lv
+zoomcentrs.lv
 zva.gov.lv,gov
 zvaigzne.lv,ecommerce
 zz.lv,news
