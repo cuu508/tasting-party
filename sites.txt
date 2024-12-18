@@ -220,6 +220,7 @@ jelgava.lv
 jp.lv,medicine
 jpslimnica.lv,medicine
 jrslimnica.lv,medicine
+jrt.lv
 jugland.lv
 jumava.lv,ecommerce books
 jurmala.lv
@@ -535,6 +536,7 @@ upb.lv
 ur.gov.lv,gov
 uzdevumi.lv,edu_tool
 va.lv,education
+vadc.lv,medicine
 vakuums.lv,ecommerce
 valleta.lv
 valmierasteatris.lv
