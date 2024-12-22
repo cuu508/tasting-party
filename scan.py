@@ -110,8 +110,15 @@ def load_cookies(url: str) -> list[Cookie] | None:
             d.quit()
             return None
 
+        try:
+            title = d.title
+        except TimeoutException:
+            print(f"[{url}] Page load timed out while retrieving title, skipping.")
+            d.quit()
+            return None
+
         for s in TITLE_ERRORS:
-            if s in d.title:
+            if s in title:
                 print(f"[{url}] Title contains '{s}', skipping.")
                 d.quit()
                 return None
