@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from contextlib import contextmanager
 from dataclasses import dataclass
 import json
 from random import random, randint
@@ -21,10 +20,10 @@ from selenium_stealth import stealth
 from urllib3.exceptions import ReadTimeoutError
 
 # The cookies we show in the report table
-TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*", "Gdynp", "__utm*"]
+TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*", "Gdynp", "__utm*", "__eoi"]
 # The cookies we track in the changes section. Excludes Gdynp as
 # on several sites it seems to flip on and off frequently.
-CHANGES_TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*", "__utm*"]
+CHANGES_TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*", "__utm*", "__eoi"]
 
 # If the website title contains any of these, we will skip loading cookies for it
 TITLE_ERRORS = ["Web server is down", "SSL handshake failed"]

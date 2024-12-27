@@ -25,7 +25,7 @@
 
         <table id="sites">
             <tr>
-                <td id="filtering" colspan="9">
+                <td id="filtering" colspan="{{ targets|length + 2 }}">
                     <h2>
                         Filtrēšana
                         <small>(<span id="numVisible">{{ num_visible }}</span> no {{ catalog.sites|length }})</small>
