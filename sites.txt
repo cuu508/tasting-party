@@ -193,6 +193,7 @@ holmss.lv
 homeopatiskaaptieka.lv,pharmacy
 hostnet.lv
 hosts.lv
+hotelezeri.lv
 hugo.lv
 iauto.lv,news
 ib.luminor.lv,bank
@@ -387,6 +388,7 @@ oho.lv
 olimpia.lv
 olybet.lv,gambling
 omniva.lv
+ondo.lv
 online.depo.lv,ecommerce
 online.lv
 onlinecasinoreports.lv,gambling
@@ -430,6 +432,7 @@ rck.lv,education
 rdn.lv,medicine
 rdveikals.lv,ecommerce
 rebaltica.lv,news
+rehcentrsligatne.lv,medicine
 reitingi.lv
 rekini.lv
 relaxfm.lv,radio_tv
