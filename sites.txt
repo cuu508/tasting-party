@@ -6,6 +6,7 @@
 4games.pro,ecommerce
 707.lv,ecommerce
 abone.lv
+aboutyou.lv,ecommerce
 absolvents.lv,edu_tool
 act.lv,ecommerce
 adazunovads.lv
@@ -18,6 +19,8 @@ aluksnespoliklinika.lv,medicine
 aluksnesslimnica.lv,medicine
 andelemandele.lv,ecommerce
 anete.lv,ecommerce
+apavivisiem.lv,ecommerce
+apavuskvers.lv,ecommerce
 apelsins.com
 apgads.lu.lv,books
 apollo.lv,news
@@ -78,6 +81,7 @@ center.lv,ecommerce
 cenuklubs.lv
 cesis.lv
 cesuklinika.lv,medicine
+cetraszoles.lv,ecommerce
 cetri.lv,radio_tv
 chayka.lv,news
 circlek.lv
@@ -93,6 +97,7 @@ csp.gov.lv,gov
 cv.lv
 cvk.lv,gov
 cvmarket.lv
+danija.lv,ecommerce
 datamed.lv,medicine
 dateks.lv,ecommerce
 daugavpils.lv
@@ -129,6 +134,7 @@ e-menessaptieka.lv,pharmacy ecommerce
 e-saulesaptieka.lv,pharmacy ecommerce
 e.csdd.lv,gov
 eapavi.lv,ecommerce
+eapavi.lv,ecommerce
 ecolines.net
 edi.lv
 eds.vid.gov.lv,gov
@@ -137,6 +143,7 @@ edurio.lv,edu_tool
 egl.lv,medicine
 egtools.lv,ecommerce
 ehr.fm
+eiropasapavi.lv,ecommerce
 electrobase.lv,ecommerce
 elektrum.lv
 eliesma.lv,books
@@ -177,6 +184,7 @@ germanrings.lv
 ggpoker.lv,gambling
 gintermuiza.lv,medicine
 gitana.lv,ecommerce
+glami.lv,ecommerce
 glami.lv,ecommerce
 go3.lv
 gorod.lv,news
@@ -307,6 +315,7 @@ lukass.lv,ecommerce
 lulu.lv
 luminor.lv,bank
 lursoft.lv
+lv.ecco.com,ecommerce
 lv.lv,books
 lvbet.lv,gambling
 lvceli.lv
@@ -472,6 +481,7 @@ sinsay.com,ecommerce
 sixt.lv
 sizeer.lv,ecommerce
 skandimotors.lv,dealership
+skechers.lv,ecommerce
 skola2030.lv,gov
 skolo.lv,edu_tool
 skyandmore.lv
@@ -581,12 +591,14 @@ vtu-valmiera.lv
 vvc.lv,medicine
 web-design.lv
 weekend.lv,ecommerce
+weekend.lv,ecommerce
 www.altum.lv
 www.smiltenesslimnica.lv,medicine
 xsrotallietas.lv
 xtv.lv,news,radio_tv
 yandex.lv
 zalando.lv,ecommerce
+zara.com,ecommerce
 zauers.lv,ecommerce
 ziedot.lv
 ziemelkurzemesslimnica.lv,medicine
