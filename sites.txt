@@ -134,7 +134,6 @@ e-menessaptieka.lv,pharmacy ecommerce
 e-saulesaptieka.lv,pharmacy ecommerce
 e.csdd.lv,gov
 eapavi.lv,ecommerce
-eapavi.lv,ecommerce
 ecolines.net
 edi.lv
 eds.vid.gov.lv,gov
@@ -184,7 +183,6 @@ germanrings.lv
 ggpoker.lv,gambling
 gintermuiza.lv,medicine
 gitana.lv,ecommerce
-glami.lv,ecommerce
 glami.lv,ecommerce
 go3.lv
 gorod.lv,news
@@ -590,7 +588,6 @@ vs.lv,news
 vtu-valmiera.lv
 vvc.lv,medicine
 web-design.lv
-weekend.lv,ecommerce
 weekend.lv,ecommerce
 www.altum.lv
 www.smiltenesslimnica.lv,medicine
