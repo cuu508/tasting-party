@@ -8,7 +8,6 @@
 abone.lv
 aboutyou.lv,ecommerce
 absolvents.lv,edu_tool
-act.lv,ecommerce
 adazunovads.lv
 adbaltic.lv,ecommerce
 adbox.lv
