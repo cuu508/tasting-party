@@ -326,6 +326,7 @@ magnum.lv
 majaiundarzam.lv,news
 makeup.lv,ecommerce
 makonix.com
+malta.lv
 maminuklubs.lv
 mammamuntetiem.lv
 mana.omniva.lv
