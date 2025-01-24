@@ -306,6 +306,7 @@ lr1.lsm.lv,radio_tv
 lr2.lsm.lv,radio_tv
 lr4.lsm.lv,radio_tv
 lspa.lv,education
+ltab.lv
 ltrk.lv
 lu.lv,education
 lukass.lv,ecommerce
@@ -388,6 +389,7 @@ nrcvaivari.lv,medicine
 ntz.lv,news
 nva.gov.lv,gov
 octa.lv
+octa24.lv
 octas.lv
 officeshop.lv,ecommerce
 ogresslimnica.lv,medicine
