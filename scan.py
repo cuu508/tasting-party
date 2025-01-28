@@ -20,10 +20,29 @@ from selenium_stealth import stealth
 from urllib3.exceptions import ReadTimeoutError
 
 # The cookies we show in the report table
-TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*", "Gdynp", "__utm*", "__eoi"]
+TARGETS = [
+    "_ga",
+    "_fbp",
+    "_clck",
+    "_pcid",
+    "_hj*",
+    "Gdynp",
+    "__utm*",
+    "__eoi",
+    "__gfp_64b",
+]
 # The cookies we track in the changes section. Excludes Gdynp as
 # on several sites it seems to flip on and off frequently.
-CHANGES_TARGETS = ["_ga", "_fbp", "_clck", "_pcid", "_hj*", "__utm*", "__eoi"]
+CHANGES_TARGETS = [
+    "_ga",
+    "_fbp",
+    "_clck",
+    "_pcid",
+    "_hj*",
+    "__utm*",
+    "__eoi",
+    "__gfp_64b",
+]
 
 # If the website title contains any of these, we will skip loading cookies for it
 TITLE_ERRORS = ["Web server is down", "SSL handshake failed"]
@@ -92,7 +111,7 @@ def get_driver(user_dir: str):
 
 
 def load_cookies(url: str) -> list[Cookie] | None:
-    print(f"[{ url }] Loading cookies")
+    print(f"[{url}] Loading cookies")
     with tempfile.TemporaryDirectory() as user_dir:
         d = get_driver(user_dir)
         d.set_page_load_timeout(30)
@@ -220,11 +239,11 @@ class Catalog:
                 parts.append("null")
 
             domain, category = parts[0], parts[1]
-            assert domain != prev_domain, f"Duplicate: { domain }"
+            assert domain != prev_domain, f"Duplicate: {domain}"
             prev_domain = domain
             cookielist = self.get_cookies(domain)
             if cookielist is None:
-                cookielist = load_cookies(f"https://{ domain }")
+                cookielist = load_cookies(f"https://{domain}")
                 if cookielist is not None:
                     self.set_cookies(domain, cookielist)
 
