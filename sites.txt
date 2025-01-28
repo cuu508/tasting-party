@@ -291,6 +291,7 @@ liiba.lv
 likta.lv
 likumi.lv,gov
 linuxcentrs.lv
+liquid.lv
 lka.edu.lv,education
 lkr.lv,radio_tv
 lma.lv,education
@@ -340,7 +341,7 @@ mape.gov.lv,edu_tool
 marketer.lv
 masterfoto.lv,ecommerce
 maxima.lv
-maxtrade.lv,news
+maxtrade.lv,ecommerce
 mazda.lv,dealership
 mb.lv
 medicine.lv
