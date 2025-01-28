@@ -19,6 +19,12 @@ td {
     min-width: 60px;
 }
 
+#sites-header > th {
+    background: white;
+    position: sticky;
+    top: -1px;
+}
+
 td.x {
     background: #fee;
     color: #a00;
