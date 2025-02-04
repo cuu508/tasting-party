@@ -14,7 +14,11 @@ from babel.dates import format_date
 from jinja2 import Environment, FileSystemLoader
 from pydantic import BaseModel, TypeAdapter
 from selenium import webdriver
-from selenium.common.exceptions import TimeoutException, WebDriverException
+from selenium.common.exceptions import (
+    TimeoutException,
+    WebDriverException,
+    JavascriptException,
+)
 from selenium.webdriver.common.keys import Keys
 from selenium_stealth import stealth
 from urllib3.exceptions import ReadTimeoutError
@@ -144,9 +148,15 @@ def load_cookies(url: str) -> list[Cookie] | None:
         time.sleep(3)
 
         # Now prod the page to cause more cookies to load:
-        width = d.execute_script("return window.innerWidth")
-        height = d.execute_script("return window.innerHeight")
-        scrollh = d.execute_script("return document.body.scrollHeight")
+        try:
+            width = d.execute_script("return window.innerWidth")
+            height = d.execute_script("return window.innerHeight")
+            scrollh = d.execute_script("return document.body.scrollHeight")
+        except JavascriptException as e:
+            print(f"[{url}] {e}, skipping.")
+            d.quit()
+            return None
+
         chain = webdriver.ActionChains(d)
 
         # 1. Center mouse
