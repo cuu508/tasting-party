@@ -535,6 +535,7 @@ tolmets.lv
 tonybet.lv,gambling
 toot.lv
 top.lv
+topografija.lv
 topradio.tv3.lv,radio_tv
 tos.lv,medicine
 toyota.lv,dealership
