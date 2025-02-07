@@ -374,6 +374,7 @@ naba.lsm.lv,radio_tv
 naba.lv,radio_tv
 nano.lv
 narvesen.lv
+neoshop.lv,ecommerce
 neputns.lv,ecommerce books
 ness-solutions.com
 neste.lv
