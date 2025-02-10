@@ -125,6 +125,7 @@ dtg.lv
 du.lv,education
 dvi.gov.lv,gov
 dyson.lv
+dzd.lv
 dzentlmenis.lv,news
 dzirkstele.lv,news
 e-euroaptieka.lv,pharmacy ecommerce
@@ -323,6 +324,7 @@ lvportals.lv
 lza.lv
 m79.lv,ecommerce
 macibumateriali.lv,edu_tool
+madonaspatversme.lv
 madonasslimnica.lv,medicine
 magnum.lv
 majaiundarzam.lv,news
@@ -351,6 +353,7 @@ menessaptieka.lv,pharmacy
 mercedes-benz.lv,dealership
 mesh.lv
 meteofor.lv
+mezavairogi.lv
 mfa.gov.lv,gov
 mfd.lv,medicine
 micrec.lv
@@ -410,10 +413,12 @@ opera.lv
 optibet.lv,gambling
 oreol.eu,ecommerce
 origo.lv
+otramaja.lv
 pafbet.lv,gambling
 paligsmacibas.lv,edu_tool
 parkexpert.lv
 pasts.lv
+patversme.lv
 periodika.lv
 petergailis.lv,books
 peugeot.lv,dealership
@@ -450,6 +455,8 @@ relaxfm.lv,radio_tv
 replay.lsm.lv,radio_tv
 retrofm.lv,radio_lv
 retv.lv,radio_tv
+reznam.lv
+ridzivnieki.lv
 riepulideris.lv
 rietumu.com,bank
 riga-airport.com
@@ -491,6 +498,7 @@ slageris.lv,radio_tv
 slimnica.daugavpils.lv,medicine
 slimnica.lv,medicine
 slimnicuapvieniba.lv,medicine
+slokaspatversme.lv
 smiltenesnovads.lv
 smscredit.lv
 soma.lv,edu_tool
@@ -548,6 +556,7 @@ tv24.lv,radio_tv
 tv3.lv,news,radio_tv
 tvnet.lv,news
 ucs.lv
+ulubele.org
 upb.lv
 ur.gov.lv,gov
 uzdevumi.lv,edu_tool
