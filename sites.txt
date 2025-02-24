@@ -14,6 +14,7 @@ adbox.lv
 aio.lv,ecommerce
 akropolealfa.lv
 akvaparks.lv
+alandeko.lv,ecommerce
 aluksnespoliklinika.lv,medicine
 aluksnesslimnica.lv,medicine
 andelemandele.lv,ecommerce
@@ -68,6 +69,7 @@ bmw-motorrad.lv,dealership
 bmw.lv,dealership
 bmwclub.lv
 bmwpower.lv
+bonami.lv,ecommerce
 bt1.lv
 bta.lv
 buts.lv,education
@@ -143,7 +145,9 @@ egl.lv,medicine
 egtools.lv,ecommerce
 ehr.fm
 eiropasapavi.lv,ecommerce
+ekolumens.lv,ecommerce
 electrobase.lv,ecommerce
+elektrika.lv,ecommerce
 elektrum.lv
 eliesma.lv,books
 eltek.lv,ecommerce
@@ -155,6 +159,7 @@ ergo.lv
 ernis.lv
 esto.eu
 euroaptieka.lv,pharmacy
+euroled.lv,ecommerce
 euronics.lv,ecommerce
 europark.lv
 eveseliba.gov.lv,gov
@@ -172,6 +177,7 @@ forumauto.lv,dealership
 forumcinemas.lv
 fotoprint.lv
 gabi.lv,ecommerce
+gaismasmarket.lv,ecommerce
 galerijacentrs.lv
 galleriariga.lv
 gameroom.lv,ecommerce
@@ -260,6 +266,8 @@ laa.lv
 laboratorija.lv,medicine
 labsveikals.lv,ecommerce
 laimz.lv,gambling
+lampaungaisma.lv,ecommerce
+lampupasaule.lv,ecommerce
 lap.lv
 lasi.lv,news
 latloto.lv,gambling
@@ -272,6 +280,8 @@ latvijastalrunis.lv
 lbtu.lv,education
 ldz.lv
 lecas24.lv,ecommerce
+ledakcijas.lv,ecommerce
+ledveikals.lv,ecommerce
 legit.lv,ecommerce
 lelluteatris.lv
 lemona.lv,ecommerce
@@ -314,6 +324,7 @@ lu.lv,education
 lukass.lv,ecommerce
 lulu.lv
 luminor.lv,bank
+lumories.lv,ecommerce
 lursoft.lv
 lv.ecco.com,ecommerce
 lv.lv,books
@@ -336,6 +347,7 @@ mammamuntetiem.lv
 mana.omniva.lv
 manaaptieka.lv,pharmacy
 manabalss.lv
+manalustra.lv,ecommerce
 manizurnali.lv
 mans.lg.lv
 mansjumis.lv
@@ -525,6 +537,7 @@ strencupns.lv,medicine
 swedbank.lv,bank
 synottip.lv,gambling
 tavadruka.lv
+tavagaisma.lv,ecommerce
 tavex.lv
 tavidraugi.lv
 tcaugusts.lv
@@ -580,6 +593,7 @@ ventspils.lv
 ventspilsnovads.lv
 ventspilspoliklinika.lv,medicine
 verkter.lv,ecommerce
+verners.lv,ecommerce
 vestnesis.lv,gov
 via-una.lv,medicine
 viaa.gov.lv,gov
