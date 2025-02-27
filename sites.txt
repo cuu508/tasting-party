@@ -2,8 +2,10 @@
 1a.lv,ecommerce
 1clix.eu,ecommerce
 220.lv,ecommerce
+24a.lv,ecommerce
 24it.lv,ecommerce
 4games.pro,ecommerce
+4mebeles.lv,ecommerce
 707.lv,ecommerce
 abone.lv
 aboutyou.lv,ecommerce
@@ -54,6 +56,7 @@ bauskasslimnica.lv,medicine
 bb.lv,news
 benu.lv,pharmacy ecommerce
 bernu-pasaule.lv
+berrymebeles.lv,ecommerce
 betsafe.lv,gambling
 bezrindas.lv
 bfs.lv,ecommerce
@@ -70,6 +73,7 @@ bmw.lv,dealership
 bmwclub.lv
 bmwpower.lv
 bonami.lv,ecommerce
+bonaselect.lv,ecommerce
 bt1.lv
 bta.lv
 buts.lv,education
@@ -85,6 +89,7 @@ cesuklinika.lv,medicine
 cetraszoles.lv,ecommerce
 cetri.lv,radio_tv
 chayka.lv,news
+ciekurs.lv,ecommerce
 circlek.lv
 cirks.lv
 citadele.lv,bank
@@ -101,6 +106,7 @@ cvmarket.lv
 danija.lv,ecommerce
 datamed.lv,medicine
 dateks.lv,ecommerce
+daudzmebeles.lv,ecommerce
 daugavpils.lv
 davanuserviss.lv
 db.lv,news
@@ -187,6 +193,8 @@ garamantas.lv
 gaso.lv
 germanrings.lv
 ggpoker.lv,gambling
+gigantmebeles.lv,ecommerce
+gintaromebeles.lv,ecommerce
 gintermuiza.lv,medicine
 gitana.lv,ecommerce
 glami.lv,ecommerce
@@ -212,6 +220,7 @@ ib.luminor.lv,bank
 ibanka.seb.lv,bank
 ic24.lv,ecommerce
 icm.lv
+idmebeles.lv,ecommerce
 iem.gov.lv,gov
 if.lv
 iizii.eu,ecommerce
@@ -241,6 +250,7 @@ jurmalasslimnica.lv,medicine
 jvlma.lv,education
 jysk.lv,ecommerce
 kartes.lv
+kate.lv,ecommerce
 kazino-latvija.com,gambling
 keraterm.lv
 kia.lv,dealership
@@ -358,6 +368,9 @@ maxima.lv
 maxtrade.lv,ecommerce
 mazda.lv,dealership
 mb.lv
+mebeles.lv,ecommerce
+mebeles1.lv,ecommerce
+mebelesir.lv,ecommerce
 medicine.lv
 mego.lv
 memby.lv,edu_tool
@@ -375,9 +388,11 @@ mixfm.lv,radio_tv
 mixnews.lv,news
 mk.gov.lv,gov
 mklat.lv,news
+mnmebeles.lv,ecommerce
 mnogoknig.lv,ecommerce
 mobilly.lv
 mod.gov.lv,gov
+modernasmebeles.lv
 modivo.lv,ecommerce
 mols.lv
 morex.lv,ecommerce
@@ -423,6 +438,7 @@ opbank.lv
 open.lv
 opera.lv
 optibet.lv,gambling
+optimus.lv,ecommerce
 oreol.eu,ecommerce
 origo.lv
 otramaja.lv
