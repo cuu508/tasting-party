@@ -254,7 +254,6 @@ kate.lv,ecommerce
 kazino-latvija.com,gambling
 keraterm.lv
 kia.lv,dealership
-kimko.lv,ecommerce
 klasika.lsm.lv,radio_tv
 klondaika.lv,gambling
 km.gov.lv,gov
