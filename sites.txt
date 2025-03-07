@@ -454,6 +454,7 @@ pieci.lv,radio_tv
 pilseta24.lv
 ping.lv
 pmlp.gov.lv,gov
+podiumriga.lv,ecommerce
 poliklinika.iem.gov.lv,medicine
 porsche.lv,dealership
 pp.lv
