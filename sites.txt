@@ -527,6 +527,7 @@ slimnica.daugavpils.lv,medicine
 slimnica.lv,medicine
 slimnicuapvieniba.lv,medicine
 slokaspatversme.lv
+smartposti.lv
 smiltenesnovads.lv
 smscredit.lv
 soma.lv,edu_tool
