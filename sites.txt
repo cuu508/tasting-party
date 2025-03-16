@@ -326,7 +326,6 @@ lounge-fm.lv,radio_tv
 lr1.lsm.lv,radio_tv
 lr2.lsm.lv,radio_tv
 lr4.lsm.lv,radio_tv
-lspa.lv,education
 ltab.lv
 ltrk.lv
 lu.lv,education
