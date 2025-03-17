@@ -374,7 +374,7 @@ mego.lv
 memby.lv,edu_tool
 menessaptieka.lv,pharmacy
 mercedes-benz.lv,dealership
-mesh.lv
+mesh-bms.com
 meteofor.lv
 mezavairogi.lv
 mfa.gov.lv,gov
