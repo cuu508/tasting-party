@@ -361,6 +361,7 @@ mans.lg.lv
 mansjumis.lv
 mape.gov.lv,edu_tool
 marketer.lv
+markit.eu/lv
 masterfoto.lv,ecommerce
 maxima.lv
 maxtrade.lv,ecommerce
