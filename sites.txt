@@ -640,6 +640,7 @@ xsrotallietas.lv
 xtv.lv,news,radio_tv
 yandex.lv
 zalando.lv,ecommerce
+zaluzijufabrika.lv
 zara.com,ecommerce
 zauers.lv,ecommerce
 ziedot.lv
