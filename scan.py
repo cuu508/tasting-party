@@ -114,7 +114,7 @@ def get_driver(user_dir: str):
     return d
 
 
-def load_cookies(url: str) -> list[Cookie] | None:
+def load_cookies(url: str, skip_on_timeout: bool) -> list[Cookie] | None:
     print(f"[{url}] Loading cookies")
     with tempfile.TemporaryDirectory() as user_dir:
         d = get_driver(user_dir)
@@ -122,9 +122,12 @@ def load_cookies(url: str) -> list[Cookie] | None:
         try:
             d.get(url)
         except TimeoutException:
-            print(f"[{url}] Page load timed out, skipping.")
-            d.quit()
-            return None
+            if skip_on_timeout:
+                print(f"[{url}] Page load timed out, skipping.")
+                d.quit()
+                return None
+            else:
+                print(f"[{url}] Page load timed out, cookies may still be loading.")
         except ReadTimeoutError:
             print(f"[{url}] urllib3 timeout, skipping.")
             d.quit()
@@ -233,7 +236,7 @@ class Site:
 
 
 class Catalog:
-    def __init__(self) -> None:
+    def __init__(self, skip_on_timeout=True) -> None:
         now = datetime.now(UTC)
         ts = now.strftime("%Y%m%d")
         self.today_path = Path("scans") / ts
@@ -255,7 +258,7 @@ class Catalog:
             prev_domain = domain
             cookielist = self.get_cookies(domain)
             if cookielist is None:
-                cookielist = load_cookies(f"https://{domain}")
+                cookielist = load_cookies(f"https://{domain}", skip_on_timeout)
                 if cookielist is not None:
                     self.set_cookies(domain, cookielist)
 
@@ -343,6 +346,6 @@ if __name__ == "__main__":
     # If any site fails to load, retry:
     if any(site.cookies is None for site in catalog.sites):
         print("Now retrying failed page loads:")
-        catalog = Catalog()
+        catalog = Catalog(skip_on_timeout=False)
 
     generate_report(catalog)
