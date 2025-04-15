@@ -40,7 +40,6 @@ auto-abc.lv
 autoblitz.lv,dealership
 autobrava.lv,dealership
 autodoc.lv,ecommerce
-autotransports.lv
 avotsabc.lv,books
 ba.lv,education
 babystore.lv,ecommerce
@@ -632,6 +631,7 @@ volvocars.musamotors.lv,dealership
 vs.lv,news
 vtu-valmiera.lv
 vvc.lv,medicine
+wanema.lv
 web-design.lv
 weekend.lv,ecommerce
 www.altum.lv
