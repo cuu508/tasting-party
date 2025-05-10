@@ -636,6 +636,7 @@ web-design.lv
 weekend.lv,ecommerce
 www.altum.lv
 www.smiltenesslimnica.lv,medicine
+www.stokker.lv,ecommerce
 xsrotallietas.lv
 xtv.lv,news,radio_tv
 yandex.lv
