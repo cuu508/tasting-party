@@ -235,6 +235,7 @@ ir.lv,news
 itap.lv
 itella.lv
 izm.gov.lv,gov
+izskrienrigu.lv
 janisroze.lv,ecommerce books
 jauns.lv,news
 jelgava.lv
