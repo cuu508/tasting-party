@@ -252,7 +252,6 @@ jysk.lv,ecommerce
 kartes.lv
 kate.lv,ecommerce
 kazino-latvija.com,gambling
-keraterm.lv
 kia.lv,dealership
 klasika.lsm.lv,radio_tv
 klondaika.lv,gambling
