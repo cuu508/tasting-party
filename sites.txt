@@ -251,6 +251,7 @@ jurmalasslimnica.lv,medicine
 jvlma.lv,education
 jysk.lv,ecommerce
 kartes.lv
+kaskurkad.lv
 kate.lv,ecommerce
 kazino-latvija.com,gambling
 kia.lv,dealership
@@ -266,6 +267,7 @@ kruza.lv,ecommerce
 ksenukai.lv,ecommerce
 kuldigasnovads.lv
 kuldigasslimnica.lv,medicine
+kurdoties.lv
 kurpirkt.lv
 kursi.lv,ecommerce
 kursors.lv,news
@@ -312,6 +314,7 @@ likta.lv
 likumi.lv,gov
 linuxcentrs.lv
 liquid.lv
+liveriga.com
 lka.edu.lv,education
 lkr.lv,radio_tv
 lma.lv,education
@@ -622,6 +625,7 @@ vidzemesslimnica.lv,medicine
 virsi.lv
 visa.lv
 visidati.lv
+visipasakumi.lv
 visma.lv
 viss.gov.lv,gov
 viss.lv
