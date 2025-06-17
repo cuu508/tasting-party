@@ -157,6 +157,7 @@ elektrum.lv
 eliesma.lv,books
 eltek.lv,ecommerce
 em.gov.lv,gov
+enciklopedija.lv
 eparaksts.lv
 eparking.lv
 epoliklinika.lv,medicine
@@ -443,6 +444,7 @@ otramaja.lv
 pafbet.lv,gambling
 paligsmacibas.lv,edu_tool
 parkexpert.lv
+pasakumi.com
 pasts.lv
 patversme.lv
 periodika.lv
