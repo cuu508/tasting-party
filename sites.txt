@@ -16,6 +16,7 @@ adbox.lv
 aio.lv,ecommerce
 akropolealfa.lv
 akvaparks.lv
+akvedukts.lv
 alandeko.lv,ecommerce
 aluksnespoliklinika.lv,medicine
 aluksnesslimnica.lv,medicine
