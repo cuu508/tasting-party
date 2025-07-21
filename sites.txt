@@ -1,6 +1,5 @@
 1188.lv
 1a.lv,ecommerce
-1clix.eu,ecommerce
 220.lv,ecommerce
 24a.lv,ecommerce
 24it.lv,ecommerce
