@@ -30,7 +30,7 @@ apollokino.lv
 apotheka.lv,pharmacy ecommerce
 aptieka1.lv,pharmacy
 arcada.lv
-armino.lv,ecommerce edu_tools
+armino.lv,ecommerce edu_tool
 arsts.lv,news
 aslimnica.lv,medicine
 astarte.lv
