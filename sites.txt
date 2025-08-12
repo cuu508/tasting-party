@@ -161,6 +161,7 @@ enciklopedija.lv
 eparaksts.lv
 eparking.lv
 epoliklinika.lv,medicine
+epromo.lv
 ergo.lv
 ernis.lv
 esto.eu
@@ -468,7 +469,6 @@ pricemarket.lv,ecommerce
 pro-mix.lv,ecommerce
 prof.lv
 proline.lv,ecommerce
-promo.lv
 ptac.gov.lv,gov
 puaro.lv,news
 puls.lv
