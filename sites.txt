@@ -38,6 +38,7 @@ astarte.lv
 atd.lv
 atea.lv
 attistibai.lv,politicians
+augstskola.lv,education
 auto-abc.lv
 autoblitz.lv,dealership
 autobrava.lv,dealership
@@ -112,6 +113,7 @@ daugavpils.lv
 davanuserviss.lv
 db.lv,news
 decathlon.lv,ecommerce
+decco.lv
 delfi.lv,news
 dfi.lv,ecommerce
 diena.lv,news
@@ -185,6 +187,7 @@ focus.lv,news
 forumauto.lv,dealership
 forumcinemas.lv
 fotoprint.lv
+freshdesign.lv
 gabi.lv,ecommerce
 gaismasmarket.lv,ecommerce
 galerijacentrs.lv
@@ -195,6 +198,7 @@ gandrs.lv,ecommerce
 garamantas.lv
 gaso.lv
 germanrings.lv
+getapro.lv
 ggpoker.lv,gambling
 gigantmebeles.lv,ecommerce
 gintaromebeles.lv,ecommerce
@@ -282,6 +286,7 @@ kvc.lv,medicine
 la.lv,news
 laa.lv
 laboratorija.lv,medicine
+labsdizains.lv
 labsveikals.lv,ecommerce
 laimz.lv,gambling
 lampaungaisma.lv,ecommerce
@@ -409,6 +414,7 @@ morex.lv,ecommerce
 motofavorits.lv,dealership
 mozello.lv
 muzikas-video.lv,radio_tv
+n1home.lv
 naa.mil.lv,education
 naba.lsm.lv,radio_tv
 naba.lv,radio_tv
@@ -478,6 +484,7 @@ press.lv,news
 pricemarket.lv,ecommerce
 pro-mix.lv,ecommerce
 prof.lv
+progetto.lv
 progresivie.lv,politicians
 proline.lv,ecommerce
 ptac.gov.lv,gov
@@ -510,6 +517,7 @@ rigaslaiks.lv
 rigassatiksme.lv
 rimi.lv
 riseba.lv,education
+rito.lv
 rixtech.lv
 rml.lv,radio_tv
 robertszile.lv,politicians
