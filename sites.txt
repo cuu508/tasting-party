@@ -29,6 +29,7 @@ apollo.lv,news
 apollokino.lv
 apotheka.lv,pharmacy ecommerce
 aptieka1.lv,pharmacy
+apvienotaissaraksts.lv,politicians
 arcada.lv
 armino.lv,ecommerce edu_tool
 arsts.lv,news
@@ -36,6 +37,7 @@ aslimnica.lv,medicine
 astarte.lv
 atd.lv
 atea.lv
+attistibai.lv,politicians
 auto-abc.lv
 autoblitz.lv,dealership
 autobrava.lv,dealership
@@ -200,6 +202,7 @@ gintermuiza.lv,medicine
 gitana.lv,ecommerce
 glami.lv,ecommerce
 go3.lv
+godskalpotrigai.lv,politicians
 gorod.lv,news
 gotikaauto.lv
 gpspro.lv,ecommerce
@@ -225,6 +228,7 @@ idmebeles.lv,ecommerce
 iem.gov.lv,gov
 if.lv
 iizii.eu,ecommerce
+ijabs.eu,politicians
 ikea.lv
 inbank.lv,bank
 inbox.lv
@@ -239,6 +243,7 @@ itella.lv
 izm.gov.lv,gov
 izskrienrigu.lv
 janisroze.lv,ecommerce books
+jaunavienotiba.lv,politicians
 jauns.lv,news
 jelgava.lv
 jp.lv,medicine
@@ -251,6 +256,7 @@ jurmala.lv
 jurmalasslimnica.lv,medicine
 jvlma.lv,education
 jysk.lv,ecommerce
+kalniete.lv,politicians
 kartes.lv
 kaskurkad.lv
 kate.lv,ecommerce
@@ -286,6 +292,7 @@ latloto.lv,gambling
 latvenergo.lv
 latvia.travel
 latvija.gov.lv,gov
+latvijapirmajavieta.lv,politicians
 latvijasaptiekas.lv,pharmacy
 latvijasradio.lsm.lv,radio_tv
 latvijastalrunis.lv
@@ -405,6 +412,7 @@ muzikas-video.lv,radio_tv
 naa.mil.lv,education
 naba.lsm.lv,radio_tv
 naba.lv,radio_tv
+nacionalaapvieniba.lv,politicians
 nano.lv
 narvesen.lv
 neoshop.lv,ecommerce
@@ -448,6 +456,7 @@ otramaja.lv
 pafbet.lv,gambling
 paligsmacibas.lv,edu_tool
 parkexpert.lv
+partijastabilitatei.lv,politicians
 pasakumi.com
 pasts.lv
 patversme.lv
@@ -461,6 +470,7 @@ pmlp.gov.lv,gov
 podiumriga.lv,ecommerce
 poliklinika.iem.gov.lv,medicine
 porsche.lv,dealership
+poznaks.eu,politicians
 pp.lv
 preiluslimnica.lv,medicine
 president.lv,gov
@@ -468,6 +478,7 @@ press.lv,news
 pricemarket.lv,ecommerce
 pro-mix.lv,ecommerce
 prof.lv
+progresivie.lv,politicians
 proline.lv,ecommerce
 ptac.gov.lv,gov
 puaro.lv,news
@@ -501,6 +512,7 @@ rimi.lv
 riseba.lv,education
 rixtech.lv
 rml.lv,radio_tv
+robertszile.lv,politicians
 rslimnica.lv,medicine
 rsu.lv,education
 rta.lv,education
@@ -510,6 +522,7 @@ sadalestikls.lv
 saeima.lv,gov
 saga.lv
 santa.lv,news
+saskana.eu,politicians
 satori.lv,news
 seb.lv,bank
 semikom.lv,ecommerce
@@ -596,6 +609,7 @@ ur.gov.lv,gov
 uzdevumi.lv,edu_tool
 va.lv,education
 vadc.lv,medicine
+vaidere.lv,politicians
 vakuums.lv,ecommerce
 valleta.lv
 valmierasteatris.lv
@@ -660,3 +674,4 @@ zva.gov.lv,gov
 zvaigzne.lv,ecommerce
 zz.lv,news
 zzdats.lv
+zzs.lv,politicians
