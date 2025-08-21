@@ -175,7 +175,6 @@ euronics.lv,ecommerce
 europark.lv
 eveseliba.gov.lv,gov
 eveselibaspunkts.lv,medicine
-expressshop.lv,ecommerce
 ezitis.lv
 failiem.lv
 fenikss.lv,gambling
