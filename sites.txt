@@ -409,6 +409,7 @@ mod.gov.lv,gov
 modernasmebeles.lv
 modivo.lv,ecommerce
 mols.lv
+mooblifurnitura.lv
 morex.lv,ecommerce
 motofavorits.lv,dealership
 mozello.lv
@@ -489,6 +490,7 @@ proline.lv,ecommerce
 ptac.gov.lv,gov
 puaro.lv,news
 puls.lv
+purpur.lv
 radioskonto.lv,radio_tv
 radioswh.lv,radio_tv
 radioswhplus.lv,radio_tv
