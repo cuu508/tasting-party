@@ -185,7 +185,9 @@ def generate_report(catalog: Catalog) -> None:
     """Render sites/index.html"""
 
     env = Environment(loader=FileSystemLoader("."))
-    env.filters["format_date_lv"] = lambda d: format_date(d, "EEEE, d. MMMM", "lv_LV")
+    env.filters["format_date_lv"] = lambda d: format_date(
+        d, "EEEE, Y. 'gada' d. MMMM", "lv_LV"
+    )
 
     num_visible = len([True for site in catalog.sites if site.any_red()])
 
