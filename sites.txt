@@ -536,6 +536,7 @@ satori.lv,news
 seb.lv,bank
 semikom.lv,ecommerce
 serveris.lv
+shelly.lv,ecommerce
 signe.lv,ecommerce
 signetbank.com,bank
 sigulda.lv
