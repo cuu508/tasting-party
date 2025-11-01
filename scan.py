@@ -13,15 +13,21 @@ from pydantic import BaseModel, TypeAdapter
 
 # The cookies we show in the report table
 TARGETS = [
-    "_ga",
-    "_fbp",
-    "_clck",
-    "_pcid",
-    "_hj*",
-    "Gdynp",
-    "__utm*",
     "__eoi",
     "__gfp_64b",
+    "__kla_id",
+    "__utm*",
+    "_clck",
+    "_fbp",
+    "_ga",
+    "_gcl_au",
+    "_hj*",
+    "_pcid",
+    "bxID",
+    "cX_G",
+    "Gdynp",
+    "OAID",
+    "svSession",
 ]
 # The cookies we track in the changes section. Excludes Gdynp as
 # on several sites it seems to flip on and off frequently.
@@ -101,6 +107,10 @@ class Site:
             parts.append(self.category)
 
         return " ".join(parts)
+
+    def other_matches(self):
+        skip = ["_ga", "_fbp", "_clck"]
+        return [t for t in TARGETS if self.matches(t) and t not in skip]
 
 
 class Catalog:

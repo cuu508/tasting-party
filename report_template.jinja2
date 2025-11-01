@@ -53,19 +53,19 @@
             </tr>
             <tr id="sites-header">
                 <th>Vietne</th>
-                {% for target in targets %}
-                <th>{{ target }}</th>
-                {% endfor %}
+                <th>_ga</th>
+                <th>_fbp</th>
+                <th>_clck</th>
+                <th>Citas</th>
                 <th>Visas sīkdatnes</th>
             </tr>
             {% for site in catalog.sites %}
             <tr data-domain="{{ site.domain }}" class="{{ site.css_classes() }}" {% if not site.any_red() %}style="display: none"{% endif %}>
                 <td><a href="https://{{ site.domain }}">{{ site.domain }}</a></td>
-                {% for target in targets %} {% if site.matches(target) %}
-                <td class="x">Jā</td>
-                {% else %}
-                <td></td>
-                {% endif %} {% endfor %}
+                {% if site.matches("_ga") %}<td class="x">Jā</td>{% else  %}<td></td>{% endif %}
+                {% if site.matches("_fbp") %}<td class="x">Jā</td>{% else  %}<td></td>{% endif %}
+                {% if site.matches("_clck") %}<td class="x">Jā</td>{% else  %}<td></td>{% endif %}
+                <td>{% for s in site.other_matches() %}<span>{{ s }}</span> {% endfor  %}</td>
                 <td>
                     {% if site.cookies %}
                     <details>
@@ -143,26 +143,6 @@
                 <td>Microsoft Clarity</td>
             </tr>
             <tr>
-                <td>_pcid</td>
-                <td>Statistika</td>
-                <td>Piano Analytics</td>
-            </tr>
-            <tr>
-                <td>_hj*</td>
-                <td>Statistika</td>
-                <td>HotJar</td>
-            </tr>
-            <tr>
-                <td>Gdynp</td>
-                <td>Statistika</td>
-                <td>Gemius</td>
-            </tr>
-            <tr>
-                <td>__utm*</td>
-                <td>Statistika</td>
-                <td>Google Analytics</td>
-            </tr>
-            <tr>
                 <td>__eoi</td>
                 <td>Mārketings</td>
                 <td>Google AdSense</td>
@@ -171,6 +151,56 @@
                 <td>__gfp_64b</td>
                 <td>Mārketings</td>
                 <td>Google DoubleClick</td>
+            </tr>
+            <tr>
+                <td>__kla_id</td>
+                <td>Mārketings</td>
+                <td>Klaviyo</td>
+            </tr>
+            <tr>
+                <td>__utm*</td>
+                <td>Statistika</td>
+                <td>Google Analytics</td>
+            </tr>
+            <tr>
+                <td>_gcl_au</td>
+                <td>Mārketings</td>
+                <td>Google AdSense</td>
+            </tr>
+            <tr>
+                <td>_hj*</td>
+                <td>Statistika</td>
+                <td>HotJar</td>
+            </tr>
+            <tr>
+                <td>_pcid</td>
+                <td>Statistika</td>
+                <td>Piano Analytics</td>
+            </tr>
+            <tr>
+                <td>_bxID</td>
+                <td>Mārketings</td>
+                <td>AdBox</td>
+            </tr>
+            <tr>
+                <td>cX_G</td>
+                <td>Mārketings</td>
+                <td>cXense</td>
+            </tr>
+            <tr>
+                <td>Gdynp</td>
+                <td>Statistika</td>
+                <td>Gemius</td>
+            </tr>
+            <tr>
+                <td>OAID</td>
+                <td>Mārketings</td>
+                <td>OpenX</td>
+            </tr>
+            <tr>
+                <td>svSession</td>
+                <td>Statistika</td>
+                <td>Wix</td>
             </tr>
         </table>
 
