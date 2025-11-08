@@ -540,6 +540,7 @@ signe.lv,ecommerce
 signetbank.com,bank
 sigulda.lv
 siguldasslimnica.lv,medicine
+sikdatnes.lv
 sinsay.com,ecommerce
 sixt.lv
 sizeer.lv,ecommerce
