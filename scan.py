@@ -27,19 +27,23 @@ TARGETS = [
     "cX_G",
     "Gdynp",
     "OAID",
-    "svSession",
 ]
 # The cookies we track in the changes section. Excludes Gdynp as
 # on several sites it seems to flip on and off frequently.
 CHANGES_TARGETS = [
-    "_ga",
-    "_fbp",
-    "_clck",
-    "_pcid",
-    "_hj*",
-    "__utm*",
     "__eoi",
     "__gfp_64b",
+    "__kla_id",
+    "__utm*",
+    "_clck",
+    "_fbp",
+    "_ga",
+    "_gcl_au",
+    "_hj*",
+    "_pcid",
+    "bxID",
+    "cX_G",
+    "OAID",
 ]
 
 
