@@ -27,6 +27,7 @@ TARGETS = [
     "bxID",
     "cX_G",
     "Gdynp",
+    "muc_ads",
     "OAID",
 ]
 # The cookies we track in the changes section. Excludes Gdynp as
@@ -45,6 +46,7 @@ CHANGES_TARGETS = [
     "_snrs_*",
     "bxID",
     "cX_G",
+    "muc_ads",
     "OAID",
 ]
 
