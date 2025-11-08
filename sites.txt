@@ -2,7 +2,6 @@
 1a.lv,ecommerce
 220.lv,ecommerce
 24a.lv,ecommerce
-24it.lv,ecommerce
 4games.pro,ecommerce
 4mebeles.lv,ecommerce
 707.lv,ecommerce
