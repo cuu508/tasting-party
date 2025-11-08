@@ -31,12 +31,12 @@ td.x {
     text-align: center;
 }
 
-#sites th:nth-child(5),
-#sites td:nth-child(5) {
+#sites th:nth-child(4),
+#sites td:nth-child(4) {
     text-align: left;
 }
 
-#sites td:nth-child(5) span {
+#sites td:nth-child(4) span {
     background: #fee;
     color: #a00;
     display: inline-block;
