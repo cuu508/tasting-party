@@ -55,7 +55,6 @@
                 <th>Vietne</th>
                 <th>_ga</th>
                 <th>_fbp</th>
-                <th>_clck</th>
                 <th>Citas</th>
                 <th>Visas sīkdatnes</th>
             </tr>
@@ -64,7 +63,6 @@
                 <td><a href="https://{{ site.domain }}">{{ site.domain }}</a></td>
                 {% if site.matches("_ga") %}<td class="x">Jā</td>{% else  %}<td></td>{% endif %}
                 {% if site.matches("_fbp") %}<td class="x">Jā</td>{% else  %}<td></td>{% endif %}
-                {% if site.matches("_clck") %}<td class="x">Jā</td>{% else  %}<td></td>{% endif %}
                 <td>{% for s in site.other_matches() %}<span>{{ s }}</span> {% endfor  %}</td>
                 <td>
                     {% if site.cookies %}

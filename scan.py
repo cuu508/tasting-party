@@ -119,8 +119,7 @@ class Site:
         return " ".join(parts)
 
     def other_matches(self):
-        skip = ["_ga", "_fbp", "_clck"]
-        return [t for t in TARGETS if self.matches(t) and t not in skip]
+        return [t for t in TARGETS if self.matches(t) and t not in ("_ga", "_fbp")]
 
 
 class Catalog:
