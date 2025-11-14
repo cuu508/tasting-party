@@ -8,14 +8,16 @@
 abone.lv
 aboutyou.lv,ecommerce
 absolvents.lv,edu_tool
-adazunovads.lv
+adazunovads.lv,city_county
 adbaltic.lv,ecommerce
 adbox.lv
 aio.lv,ecommerce
+aizkraukle.lv,city_county
 akropolealfa.lv
 akvaparks.lv
 akvedukts.lv
 alandeko.lv,ecommerce
+aluksne.lv,city_county
 aluksnespoliklinika.lv,medicine
 aluksnesslimnica.lv,medicine
 andelemandele.lv,ecommerce
@@ -37,6 +39,7 @@ astarte.lv
 atd.lv
 atea.lv
 attistibai.lv,politicians
+augsdaugavasnovads.lv,city_county
 augstskola.lv,education
 auto-abc.lv
 autoblitz.lv,dealership
@@ -51,8 +54,10 @@ balticdata.lv,ecommerce
 balticguru.eu,ecommerce
 balticmaps.eu
 balticom.lv
+balvi.lv,city_county
 bank.lv,bank
 barbora.lv,ecommerce
+bauskasnovads.lv,city_county
 bauskasslimnica.lv,medicine
 bb.lv,news
 benu.lv,pharmacy ecommerce
@@ -85,7 +90,7 @@ cata.lv
 ceno.lv
 center.lv,ecommerce
 cenuklubs.lv
-cesis.lv
+cesis.lv,city_county
 cesuklinika.lv,medicine
 cetraszoles.lv,ecommerce
 cetri.lv,radio_tv
@@ -108,7 +113,7 @@ danija.lv,ecommerce
 datamed.lv,medicine
 dateks.lv,ecommerce
 daudzmebeles.lv,ecommerce
-daugavpils.lv
+daugavpils.lv,city_county
 davanuserviss.lv
 db.lv,news
 decathlon.lv,ecommerce
@@ -121,7 +126,8 @@ dieviete.lv,news
 digiklase.lv,edu_tool
 directmap.lv
 discover.lv,ecommerce
-dobele.lv
+dkn.lv,city_county
+dobele.lv,city_county
 dobelesslimnica.lv,medicine
 dod.pieci.lv
 dole.lv
@@ -212,7 +218,7 @@ gramatas.lndb.lv
 greenmotors.lv,dealership
 gribu.lv
 grindeks.com
-gulbene.lv
+gulbene.lv,city_county
 hansalines.lv
 hobbyset.lv,ecommerce
 holmss.lv
@@ -247,14 +253,15 @@ izskrienrigu.lv
 janisroze.lv,ecommerce books
 jaunavienotiba.lv,politicians
 jauns.lv,news
-jelgava.lv
+jekabpils.lv,city_county
+jelgava.lv,city_county
 jp.lv,medicine
 jpslimnica.lv,medicine
 jrslimnica.lv,medicine
 jrt.lv
 jugland.lv
 jumava.lv,ecommerce books
-jurmala.lv
+jurmala.lv,city_county
 jurmalasslimnica.lv,medicine
 jvlma.lv,education
 jysk.lv,ecommerce
@@ -263,6 +270,7 @@ kartes.lv
 kaskurkad.lv
 kate.lv,ecommerce
 kazino-latvija.com,gambling
+kekava.lv,city_county
 kia.lv,dealership
 klasika.lsm.lv,radio_tv
 klondaika.lv,gambling
@@ -271,10 +279,11 @@ kniga.lv
 kontakti.lv
 kool.lv
 krajobligacijas.lv,gov
+kraslava.lv,city_county
 krasmed.lv,medicine
 kruza.lv,ecommerce
 ksenukai.lv,ecommerce
-kuldigasnovads.lv
+kuldigasnovads.lv,city_county
 kuldigasslimnica.lv,medicine
 kurdoties.lv
 kurpirkt.lv
@@ -318,13 +327,16 @@ lido.lv
 lieliskadavana.lv
 lielsmazs.lv,books
 lielvards.lv
+liepaja.lv,city_county
 liepajasslimnica.lv,medicine
 liepajniekiem.lv
 liiba.lv
 likta.lv
 likumi.lv,gov
+limbazunovads.lv,city_county
 linuxcentrs.lv
 liquid.lv
+livani.lv,city_county
 liveriga.com
 lka.edu.lv,education
 lkr.lv,radio_tv
@@ -343,6 +355,7 @@ lr4.lsm.lv,radio_tv
 ltab.lv
 ltrk.lv
 lu.lv,education
+ludzasnovads.lv,city_county
 lukass.lv,ecommerce
 lulu.lv
 luminor.lv,bank
@@ -357,6 +370,7 @@ lvportals.lv
 lza.lv
 m79.lv,ecommerce
 macibumateriali.lv,edu_tool
+madona.lv,city_county
 madonaspatversme.lv
 madonasslimnica.lv,medicine
 magnum.lv
@@ -376,6 +390,7 @@ mansjumis.lv
 mape.gov.lv,edu_tool
 marketer.lv
 markit.eu/lv
+marupe.lv,city_county
 masterfoto.lv,ecommerce
 maxima.lv
 maxtrade.lv,ecommerce
@@ -440,8 +455,10 @@ octa.lv
 octa24.lv
 octas.lv
 officeshop.lv,ecommerce
+ogresnovads.lv,city_county
 ogresslimnica.lv,medicine
 oho.lv
+olaine.lv,city_county
 olimpia.lv
 olybet.lv,gambling
 omniva.lv
@@ -477,6 +494,7 @@ poliklinika.iem.gov.lv,medicine
 porsche.lv,dealership
 poznaks.eu,politicians
 pp.lv
+preili.lv,city_county
 preiluslimnica.lv,medicine
 president.lv,gov
 press.lv,news
@@ -505,12 +523,14 @@ relaxfm.lv,radio_tv
 replay.lsm.lv,radio_tv
 retrofm.lv,radio_lv
 retv.lv,radio_tv
+rezekne.lv,city_county
+rezeknesnovads.lv,city_county
 reznam.lv
 ridzivnieki.lv
 riepulideris.lv
 rietumu.com,bank
 riga-airport.com
-riga.lv
+riga.lv,city_county
 rigaiff.lv
 rigaplaza.lv
 rigaslaiks.lv
@@ -521,6 +541,7 @@ rito.lv
 rixtech.lv
 rml.lv,radio_tv
 robertszile.lv,politicians
+ropazi.lv,city_county
 rslimnica.lv,medicine
 rsu.lv,education
 rta.lv,education
@@ -529,16 +550,19 @@ sabiedriskaisautobuss.lv
 sadalestikls.lv
 saeima.lv,gov
 saga.lv
+salaspils.lv,city_county
+saldus.lv,city_county
 santa.lv,news
 saskana.eu,politicians
 satori.lv,news
+saulkrasti.lv,city_county
 seb.lv,bank
 semikom.lv,ecommerce
 serveris.lv
 shelly.lv,ecommerce
 signe.lv,ecommerce
 signetbank.com,bank
-sigulda.lv
+sigulda.lv,city_county
 siguldasslimnica.lv,medicine
 sikdatnes.lv
 sinsay.com,ecommerce
@@ -555,7 +579,8 @@ slimnica.lv,medicine
 slimnicuapvieniba.lv,medicine
 slokaspatversme.lv
 smartposti.lv
-smiltenesnovads.lv
+smartriga.lv
+smiltenesnovads.lv,city_county
 smscredit.lv
 soma.lv,edu_tool
 spice.lv
@@ -580,6 +605,7 @@ straujupite.lv
 strencupns.lv,medicine
 swedbank.lv,bank
 synottip.lv,gambling
+talsunovads.lv,city_county
 tavadruka.lv
 tavagaisma.lv,ecommerce
 tavex.lv
@@ -607,6 +633,7 @@ toyota.lv,dealership
 trodo.lv,ecommerce
 tsi.lv,education
 tukslim.lv,medicine
+tukums.lv,city_county
 turiba.lv,education
 tv24.lv,radio_tv
 tv3.lv,news,radio_tv
@@ -620,7 +647,9 @@ va.lv,education
 vadc.lv,medicine
 vaidere.lv,politicians
 vakuums.lv,ecommerce
+valka.lv,city_county
 valleta.lv
+valmierasnovads.lv,city_county
 valmierasteatris.lv
 valmieraszinas.lv,news
 valmiermuiza.lv,ecommerce
@@ -633,8 +662,8 @@ veikaliem.lv
 veikalsdarzam.lv,ecommerce
 venta.lv,education
 ventasbalss.lv,news
-ventspils.lv
-ventspilsnovads.lv
+ventspils.lv,city_county
+ventspilsnovads.lv,city_county
 ventspilspoliklinika.lv,medicine
 verkter.lv,ecommerce
 verners.lv,ecommerce
@@ -664,6 +693,7 @@ wanema.lv
 web-design.lv
 weekend.lv,ecommerce
 www.altum.lv
+www.jelgavasnovads.lv,city_county
 www.smiltenesslimnica.lv,medicine
 www.stokker.lv,ecommerce
 xsrotallietas.lv
