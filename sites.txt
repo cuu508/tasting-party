@@ -13,6 +13,8 @@ adbaltic.lv,ecommerce
 adbox.lv
 aio.lv,ecommerce
 aizkraukle.lv,city_county
+akcijasbuklets.lv
+akcijubuklets.lv
 akropolealfa.lv
 akvaparks.lv
 akvedukts.lv
@@ -89,6 +91,7 @@ casino777.lv,gambling
 cata.lv
 ceno.lv
 center.lv,ecommerce
+cenudepo.com
 cenuklubs.lv
 cesis.lv,city_county
 cesuklinika.lv,medicine
@@ -281,6 +284,7 @@ kool.lv
 krajobligacijas.lv,gov
 kraslava.lv,city_county
 krasmed.lv,medicine
+krumod.lv
 kruza.lv,ecommerce
 ksenukai.lv,ecommerce
 kuldigasnovads.lv,city_county
@@ -317,6 +321,7 @@ legit.lv,ecommerce
 lelluteatris.lv
 lemona.lv,ecommerce
 leta.lv,news
+letapartika.lv
 letonika.lv
 lexus.lv,dealership
 lff.lv
@@ -394,6 +399,7 @@ marupe.lv,city_county
 masterfoto.lv,ecommerce
 maxima.lv
 maxtrade.lv,ecommerce
+mazacena.lv
 mazda.lv,dealership
 mb.lv
 mebeles.lv,ecommerce
@@ -676,6 +682,8 @@ vidaxl.lv,ecommerce
 vidzemesslimnica.lv,medicine
 virsi.lv
 visa.lv
+visasakcijas.lv
+visibukleti.lv
 visidati.lv
 visipasakumi.lv
 visma.lv
