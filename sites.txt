@@ -5,6 +5,7 @@
 4games.pro,ecommerce
 4mebeles.lv,ecommerce
 707.lv,ecommerce
+a22hotel.com,hotel
 abone.lv
 aboutyou.lv,ecommerce
 absolvents.lv,edu_tool
@@ -12,6 +13,7 @@ adazunovads.lv,city_county
 adbaltic.lv,ecommerce
 adbox.lv
 aio.lv,ecommerce
+airbnb.lv
 aizkraukle.lv,city_county
 akcijasbuklets.lv
 akcijubuklets.lv
@@ -38,6 +40,7 @@ armino.lv,ecommerce edu_tool
 arsts.lv,news
 aslimnica.lv,medicine
 astarte.lv
+astonhotelriga.com,hotel
 atd.lv
 atea.lv
 attistibai.lv,politicians
@@ -52,19 +55,23 @@ ba.lv,education
 babystore.lv,ecommerce
 bac.gov.lv,gov
 balta.lv
+balticbeach.lv,hotel
 balticdata.lv,ecommerce
 balticguru.eu,ecommerce
 balticmaps.eu
 balticom.lv
+baltvilla.lv,hotel
 balvi.lv,city_county
 bank.lv,bank
 barbora.lv,ecommerce
 bauskasnovads.lv,city_county
 bauskasslimnica.lv,medicine
 bb.lv,news
+bellevue.lv,hotel
 benu.lv,pharmacy ecommerce
 bernu-pasaule.lv
 berrymebeles.lv,ecommerce
+berzkalni.lv,hotel
 betsafe.lv,gambling
 bezrindas.lv
 bfs.lv,ecommerce
@@ -134,6 +141,7 @@ dobele.lv,city_county
 dobelesslimnica.lv,medicine
 dod.pieci.lv
 dole.lv
+domehotel.lv,hotel
 domina-shopping.lv
 douglas.lv,ecommerce
 dpd.lv
@@ -223,12 +231,21 @@ gribu.lv
 grindeks.com
 gulbene.lv,city_county
 hansalines.lv
+hanzahotel.lv,hotel
 hobbyset.lv,ecommerce
 holmss.lv
 homeopatiskaaptieka.lv,pharmacy
 hostnet.lv
 hosts.lv
-hotelezeri.lv
+hotelbergs.lv,hotel
+hotelcesis.lv,hotel
+hoteldaina.lv,hotel
+hotelezeri.lv,hotel
+hoteljanne.lv,hotel
+hotelmadona.lv,hotel
+hotels.tallink.com/lv,hotel
+hotelviktorija.lv,hotel
+hotelwolmar.lv,hotel
 hugo.lv
 iauto.lv,news
 ib.luminor.lv,bank
@@ -249,6 +266,7 @@ internetaptieka.lv,pharmacy
 iport.lv,ecommerce
 ipsp.lv,bank
 ir.lv,news
+islandehotel.lv,hotel
 itap.lv
 itella.lv
 izm.gov.lv,gov
@@ -341,6 +359,7 @@ likumi.lv,gov
 limbazunovads.lv,city_county
 linuxcentrs.lv
 liquid.lv
+livahotel.lv,hotel
 livani.lv,city_county
 liveriga.com
 lka.edu.lv,education
@@ -410,6 +429,7 @@ mego.lv
 memby.lv,edu_tool
 menessaptieka.lv,pharmacy
 mercedes-benz.lv,dealership
+mercure-riga.com,hotel
 mesh-bms.com
 meteofor.lv
 mezavairogi.lv
@@ -430,6 +450,7 @@ modernasmebeles.lv
 modivo.lv,ecommerce
 mols.lv
 mooblifurnitura.lv
+morehotel.lv,hotel
 morex.lv,ecommerce
 motofavorits.lv,dealership
 mozello.lv
@@ -481,6 +502,7 @@ optimus.lv,ecommerce
 oreol.eu,ecommerce
 origo.lv
 otramaja.lv
+ottohotel.lv,hotel
 pafbet.lv,gambling
 paligsmacibas.lv,edu_tool
 parkexpert.lv
@@ -498,6 +520,7 @@ pmlp.gov.lv,gov
 podiumriga.lv,ecommerce
 poliklinika.iem.gov.lv,medicine
 porsche.lv,dealership
+porthotel.lv,hotel
 poznaks.eu,politicians
 pp.lv
 preili.lv,city_county
@@ -505,15 +528,17 @@ preiluslimnica.lv,medicine
 president.lv,gov
 press.lv,news
 pricemarket.lv,ecommerce
+priekapietura.lv,hotel
 pro-mix.lv,ecommerce
 prof.lv
 progetto.lv
 progresivie.lv,politicians
 proline.lv,ecommerce
+promenadehotel.lv,hotel
 ptac.gov.lv,gov
 puaro.lv,news
 puls.lv
-purpur.lv
+purpur.lv,ecommerce
 radioskonto.lv,radio_tv
 radioswh.lv,radio_tv
 radioswhplus.lv,radio_tv
@@ -548,6 +573,7 @@ rixtech.lv
 rml.lv,radio_tv
 robertszile.lv,politicians
 ropazi.lv,city_county
+royalhotel.lv,hotel
 rslimnica.lv,medicine
 rsu.lv,education
 rta.lv,education
@@ -636,6 +662,7 @@ top.lv
 topografija.lv
 tos.lv,medicine
 toyota.lv,dealership
+travelask.lv
 trodo.lv,ecommerce
 tsi.lv,education
 tukslim.lv,medicine
@@ -701,9 +728,14 @@ wanema.lv
 web-design.lv
 weekend.lv,ecommerce
 www.altum.lv
+www.hotelocventspils.lv,hotel
 www.jelgavasnovads.lv,city_county
+www.radissonhotels.com/lv-lv,hotel
+www.rijahotels.com/lv,hotel
+www.rixwell.com/lv,hotel
 www.smiltenesslimnica.lv,medicine
 www.stokker.lv,ecommerce
+www.wellton.com/lv,hotel
 xsrotallietas.lv
 xtv.lv,news,radio_tv
 yandex.lv
