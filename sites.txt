@@ -322,6 +322,7 @@ lampaungaisma.lv,ecommerce
 lampupasaule.lv,ecommerce
 lap.lv
 lasi.lv,news
+lat.bb.lv,news
 latloto.lv,gambling
 latvenergo.lv
 latvia.travel
@@ -721,7 +722,6 @@ vivus.lv
 vkshop.lv,ecommerce
 vmnvd.gov.lv,gov
 volvocars.musamotors.lv,dealership
-vs.lv,news
 vtu-valmiera.lv
 vvc.lv,medicine
 wanema.lv
