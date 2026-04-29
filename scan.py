@@ -123,7 +123,7 @@ class Site:
 
 
 class Catalog:
-    def __init__(self) -> None:
+    def __init__(self, scan_missing=True) -> None:
         now = datetime.now(UTC)
         ts = now.strftime("%Y%m%d")
         self.today_path = Path("scans") / ts
@@ -144,7 +144,7 @@ class Catalog:
             assert domain != prev_domain, f"Duplicate: {domain}"
             prev_domain = domain
             cookielist = self.get_cookies(domain)
-            if cookielist is None:
+            if cookielist is None and scan_missing:
                 # No cookies: load them with chromium.
                 # Do this in a subprocess so we can kill hung processes.
                 try:
