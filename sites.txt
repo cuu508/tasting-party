@@ -506,6 +506,7 @@ otramaja.lv
 ottohotel.lv,hotel
 pafbet.lv,gambling
 paligsmacibas.lv,edu_tool
+pargauja.lv,gov
 parkexpert.lv
 partijastabilitatei.lv,politicians
 pasakumi.com
@@ -723,6 +724,7 @@ vkshop.lv,ecommerce
 vmnvd.gov.lv,gov
 volvocars.musamotors.lv,dealership
 vtu-valmiera.lv
+vugd.gov.lv,gov
 vvc.lv,medicine
 wanema.lv
 web-design.lv
