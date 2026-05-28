@@ -47,7 +47,6 @@ attistibai.lv,politicians
 augsdaugavasnovads.lv,city_county
 augstskola.lv,education
 auto-abc.lv
-autoblitz.lv,dealership
 autobrava.lv,dealership
 autodoc.lv,ecommerce
 avotsabc.lv,books
@@ -456,6 +455,7 @@ morehotel.lv,hotel
 morex.lv,ecommerce
 motofavorits.lv,dealership
 mozello.lv
+musamezciems.lv,dealership
 muzikas-video.lv,radio_tv
 n1home.lv
 naa.mil.lv,education
