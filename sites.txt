@@ -79,6 +79,7 @@ bigbank.lv
 bigbox.lv,ecommerce
 bilesuparadize.lv
 bilesuserviss.lv
+bill.me
 bite.lv,mobile
 bkus.lv,medicine
 bluorbank.lv,bank
@@ -506,7 +507,7 @@ otramaja.lv
 ottohotel.lv,hotel
 pafbet.lv,gambling
 paligsmacibas.lv,edu_tool
-pargauja.lv,gov
+pargauja.lv,city_county
 parkexpert.lv
 partijastabilitatei.lv,politicians
 pasakumi.com
