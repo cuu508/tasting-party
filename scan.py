@@ -31,6 +31,7 @@ TARGETS = [
     "OAID",
     "yashr",
     "_ttp",
+    "_sharedID",
 ]
 # The cookies we track in the changes section. Excludes Gdynp as
 # on several sites it seems to flip on and off frequently.
@@ -52,6 +53,7 @@ CHANGES_TARGETS = [
     "OAID",
     "yashr",
     "_ttp",
+    "_sharedID",
 ]
 
 
