@@ -30,6 +30,7 @@ TARGETS = [
     "muc_ads",
     "OAID",
     "yashr",
+    "_ttp",
 ]
 # The cookies we track in the changes section. Excludes Gdynp as
 # on several sites it seems to flip on and off frequently.
@@ -50,6 +51,7 @@ CHANGES_TARGETS = [
     "muc_ads",
     "OAID",
     "yashr",
+    "_ttp",
 ]
 
 
