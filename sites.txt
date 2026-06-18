@@ -202,6 +202,7 @@ focus.lv,news
 forumauto.lv,dealership
 forumcinemas.lv
 fotoprint.lv
+fpda.lv
 freshdesign.lv
 gabi.lv,ecommerce
 gaismasmarket.lv,ecommerce
