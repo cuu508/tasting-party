@@ -175,6 +175,7 @@ electrobase.lv,ecommerce
 elektrika.lv,ecommerce
 elektrum.lv
 eliesma.lv,books
+elieta.lv
 eltek.lv,ecommerce
 em.gov.lv,gov
 enciklopedija.lv
