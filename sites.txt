@@ -129,6 +129,7 @@ db.lv,news
 decathlon.lv,ecommerce
 decco.lv
 delfi.lv,news
+depozitapunkts.lv
 dfi.lv,ecommerce
 diena.lv,news
 dienaszurnali.lv,books
@@ -154,6 +155,7 @@ dvi.gov.lv,gov
 dyson.lv
 dzd.lv
 dzentlmenis.lv,news
+dzimba.lv
 dzirkstele.lv,news
 e-euroaptieka.lv,pharmacy ecommerce
 e-klase.lv,edu_tool
