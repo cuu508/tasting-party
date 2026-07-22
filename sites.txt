@@ -714,6 +714,7 @@ viada.lv
 vid.gov.lv,gov
 vidaxl.lv,ecommerce
 vidzemesslimnica.lv,medicine
+viedtelevizija.lv
 virsi.lv
 visa.lv
 visasakcijas.lv
