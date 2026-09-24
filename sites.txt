@@ -25,6 +25,7 @@ aluksne.lv,city_county
 aluksnespoliklinika.lv,medicine
 aluksnesslimnica.lv,medicine
 andelemandele.lv,ecommerce
+andrejsalacf.lv,fitness
 anete.lv,ecommerce
 apavivisiem.lv,ecommerce
 apavuskvers.lv,ecommerce
@@ -87,6 +88,7 @@ bmw-motorrad.lv,dealership
 bmw.lv,dealership
 bmwclub.lv
 bmwpower.lv
+bodysport.lv,fitness
 bonami.lv,ecommerce
 bonaselect.lv,ecommerce
 bt1.lv
@@ -112,6 +114,7 @@ citadele.lv,bank
 citro.lv
 city24.lv
 cityreal.lv
+clubf1.lv,fitness
 compensa.lv
 csc.lv
 csdd.lv,gov
@@ -163,6 +166,7 @@ e-menessaptieka.lv,pharmacy ecommerce
 e-saulesaptieka.lv,pharmacy ecommerce
 e.csdd.lv,gov
 eapavi.lv,ecommerce
+easyfit.lv,fitness
 ecolines.net
 edi.lv
 eds.vid.gov.lv,gov
@@ -200,6 +204,7 @@ fenikss.lv,gambling
 festivalslampa.lv
 fine.lv,ecommerce
 firmas.lv
+fitspotgym.lv,fitness
 fm.gov.lv,gov
 focus.lv,news
 forumauto.lv,dealership
@@ -218,12 +223,14 @@ garamantas.lv
 gaso.lv
 germanrings.lv
 getapro.lv
+gfitness.lv,fitness
 ggpoker.lv,gambling
 gigantmebeles.lv,ecommerce
 gintaromebeles.lv,ecommerce
 gintermuiza.lv,medicine
 gitana.lv,ecommerce
 glami.lv,ecommerce
+globalfitness.lv,fitness
 go3.lv
 godskalpotrigai.lv,politicians
 gorod.lv,news
@@ -343,6 +350,7 @@ ledveikals.lv,ecommerce
 legit.lv,ecommerce
 lelluteatris.lv
 lemona.lv,ecommerce
+lemongym.lv,fitness
 leta.lv,news
 letapartika.lv
 letonika.lv
@@ -461,6 +469,7 @@ motofavorits.lv,dealership
 mozello.lv
 musamezciems.lv,dealership
 muzikas-video.lv,radio_tv
+myfitness.lv,fitness
 n1home.lv
 naa.mil.lv,education
 naba.lsm.lv,radio_tv
@@ -494,6 +503,7 @@ oho.lv
 olaine.lv,city_county
 olimpia.lv
 olybet.lv,gambling
+olymp.lv,fitness
 omniva.lv
 ondo.lv
 online.depo.lv,ecommerce
@@ -546,6 +556,7 @@ ptac.gov.lv,gov
 puaro.lv,news
 puls.lv
 purpur.lv,ecommerce
+qlab.lv,fitness
 radioskonto.lv,radio_tv
 radioswh.lv,radio_tv
 radioswhplus.lv,radio_tv
@@ -622,6 +633,7 @@ smartriga.lv
 smiltenesnovads.lv,city_county
 smscredit.lv
 soma.lv,edu_tool
+sparta-klubs.lv,fitness
 spice.lv
 spins.lv,gambling
 spiritsandwine.lv,ecommerce
@@ -642,6 +654,7 @@ stockmann.lv
 stradini.lv,medicine
 straujupite.lv
 strencupns.lv,medicine
+sunfitness.lv,fitness
 swedbank.lv,bank
 synottip.lv,gambling
 talsunovads.lv,city_county
@@ -667,6 +680,7 @@ tonybet.lv,gambling
 toot.lv
 top.lv
 topografija.lv
+tornado.lv,fitness
 tos.lv,medicine
 toyota.lv,dealership
 travelask.lv
@@ -679,6 +693,7 @@ tv24.lv,radio_tv
 tv3.lv,news,radio_tv
 tvnet.lv,news
 ucs.lv
+ultrafitness.lv,fitness
 ulubele.org
 upb.lv
 ur.gov.lv,gov
@@ -708,6 +723,7 @@ ventspilspoliklinika.lv,medicine
 verkter.lv,ecommerce
 verners.lv,ecommerce
 vestnesis.lv,gov
+vfabrika.lv,fitness
 via-una.lv,medicine
 viaa.gov.lv,gov
 viada.lv
